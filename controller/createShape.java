@@ -21,18 +21,18 @@ public class createShape {
                        PaintCanvasBase paintCanvas) {
 
 
-        Graphics2D graphics2D = paintCanvas.getGraphics2D();
+
 
         if (shapeType == shapeType.RECTANGLE){
-            new rectangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor);
+            new rectangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
         }
 
         if (shapeType == shapeType.ELLIPSE){
-            new ellipse(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor);
+            new ellipse(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
         }
 
         if (shapeType == shapeType.TRIANGLE){
-            new triangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor);
+            new triangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
         }
 
 
