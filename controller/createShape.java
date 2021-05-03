@@ -5,13 +5,17 @@ import model.ShapeShadingType;
 import model.ShapeType;
 import model.draw.ellipse;
 import model.draw.rectangle;
+import model.draw.shape;
 import model.draw.triangle;
 import model.interfaces.IBuildShape;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class createShape {
+
+    public static ArrayList<shape> shapeArray = new ArrayList();
 
 
     private PaintCanvasBase paintCanvas;
@@ -19,8 +23,6 @@ public class createShape {
     public createShape(ShapeType shapeType, ShapeColor primaryColor, ShapeColor secondaryColor,
                        ShapeShadingType shadeType, int mouseX, int mouseY, int mouseX2, int mouseY2,
                        PaintCanvasBase paintCanvas) {
-
-
 
 
         if (shapeType == shapeType.RECTANGLE){
@@ -34,7 +36,6 @@ public class createShape {
         if (shapeType == shapeType.TRIANGLE){
             new triangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
         }
-
 
     }
 

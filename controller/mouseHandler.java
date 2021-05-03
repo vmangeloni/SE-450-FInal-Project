@@ -35,6 +35,8 @@ public class mouseHandler implements MouseListener {
         this.appState = appState;
     }
 
+
+
     @Override
     public void mousePressed(MouseEvent e) {
         this.mouseX = e.getX();
@@ -62,6 +64,10 @@ public class mouseHandler implements MouseListener {
                     this.mouseX,this.mouseY,this.mouseX2,this.mouseY2, this.paintCanvas);
         }
 
+        if (this.mode == mode.SELECT){
+            new selectShape(this);
+        }
+
 
     }
 
@@ -73,5 +79,10 @@ public class mouseHandler implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) { }
+
+    public int getMouseX() {return this.mouseX;}
+    public int getMouseY() {return this.mouseY;}
+    public int getMouseX2() {return this.mouseX2;}
+    public int getMouseY2() {return this.mouseY2;}
 
 }

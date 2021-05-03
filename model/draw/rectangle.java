@@ -1,11 +1,14 @@
 package model.draw;
 
+import controller.mouseHandler;
 import model.ShapeColor;
 import model.ShapeShadingType;
+import model.ShapeType;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
+import static controller.createShape.shapeArray;
 import static model.ShapeColor.returnColor;
 
 public class rectangle {
@@ -18,38 +21,46 @@ public class rectangle {
     private PaintCanvasBase paintCanvas;
     private final ShapeColor primColor;
     private final ShapeColor secColor;
-    private final ShapeShadingType getShapeType;
-
-
-
+    private final ShapeShadingType getShadeType;
+    private int pw;
+    private int ph;
 
 
 
     public rectangle(int mouseX, int mouseY, int mouseX2, int mouseY2, PaintCanvasBase paintCanvas,
-                     ShapeColor primaryColor, ShapeShadingType getShapeType, ShapeColor secColor) {
+                     ShapeColor primaryColor, ShapeShadingType getShadeType, ShapeColor secColor) {
+
         this.X1 = mouseX;
         this.Y1 = mouseY;
         this.X2 = mouseX2;
         this.Y2 = mouseY2;
         this.paintCanvas = paintCanvas;
         this.primColor = primaryColor;
-        this.getShapeType = getShapeType;
+        this.getShadeType = getShadeType;
         this.secColor = secColor;
+        this.pw = pw;
+        this.ph = ph;
 
 
-        if(getShapeType == getShapeType.OUTLINE){
+        if(getShadeType == getShadeType.OUTLINE){
             drawOutlineRectangle(returnColor(primColor));
+            createShape();
+
         }
 
-        if(getShapeType == getShapeType.FILLED_IN){
+        if(getShadeType == getShadeType.FILLED_IN){
             drawFilledRectangle(returnColor(primColor));
+            createShape();
         }
 
-        if(getShapeType == getShapeType.OUTLINE_AND_FILLED_IN){
+        if(getShadeType == getShadeType.OUTLINE_AND_FILLED_IN){
 
             drawFilledRectangle(returnColor(primColor));
             drawOutlineRectangle(returnColor(secColor));
+            createShape();
         }
+
+
 
     }
 
@@ -61,6 +72,8 @@ public class rectangle {
         graphics2D.setColor(chooseColor);
         graphics2D.drawRect(X1, Y1, pw, ph);
 
+
+
     }
 
     public void drawFilledRectangle(Color chooseColor) {
@@ -71,7 +84,15 @@ public class rectangle {
         graphics2D.setColor(chooseColor);
         graphics2D.fillRect(X1, Y1, pw, ph);
 
+
     }
+
+    public void createShape() {
+        shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
+                ShapeType.RECTANGLE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph);
+        shapeArray.add(x);
+    }
+
 
 
 
