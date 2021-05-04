@@ -68,6 +68,10 @@ public class mouseHandler implements MouseListener {
             new selectShape(this);
         }
 
+        if (this.mode == mode.MOVE){
+            new selectShape(this);
+        }
+
 
     }
 

@@ -1,9 +1,11 @@
 package controller;
 
 import model.draw.rectangle;
+import model.draw.shape;
 
-import javax.swing.plaf.basic.BasicTreeUI;
 import java.awt.*;
+
+import static controller.createShape.shapeArray;
 
 public class selectShape {
     private Rectangle selectShapes;
@@ -17,16 +19,25 @@ public class selectShape {
 
 
         selectX = callMouse.getMouseX();
-        selectY= callMouse.getMouseX2();
-        selectX2 = callMouse.getMouseY();
+        selectY= callMouse.getMouseY();
+        selectX2 = callMouse.getMouseX2();
         selectY2 = callMouse.getMouseY2();
 
         int pw = selectX2 - selectX;
         int ph = selectY2 - selectY;
 
-        selectShapes = new Rectangle(selectX, selectX2, pw, ph);
-        System.out.println(selectX + " " + selectY);
+        for (shape s: shapeArray){
+            System.out.println(s.shapeSelect);
+        }
 
+        selectShapes = new Rectangle(selectX, selectX2, pw, ph);
+
+        for (shape s: shapeArray){
+            if(s.selectSpace.intersects(selectShapes)){
+                s.selectUpdate(true);
+                System.out.println(s.shapeSelect);
+                }
+            }
     }
 }
 

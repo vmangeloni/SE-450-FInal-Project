@@ -12,6 +12,7 @@ import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class createShape {
 
@@ -27,6 +28,13 @@ public class createShape {
 
         if (shapeType == shapeType.RECTANGLE){
             new rectangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
+
+            /*
+            for (shape s: shapeArray){
+                System.out.println("ARRAY: " + s.selectSpace);
+            }
+            */
+
         }
 
         if (shapeType == shapeType.ELLIPSE){

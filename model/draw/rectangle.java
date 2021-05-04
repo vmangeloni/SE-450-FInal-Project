@@ -24,6 +24,7 @@ public class rectangle {
     private final ShapeShadingType getShadeType;
     private int pw;
     private int ph;
+    private Rectangle selectSpace;
 
 
 
@@ -68,6 +69,8 @@ public class rectangle {
         int pw = X2 - X1;
         int ph = Y2 - Y1;
 
+        selectSpace = new Rectangle(X1, X2, X2 - X1, Y2 - Y1);
+
         Graphics2D graphics2D = paintCanvas.getGraphics2D();
         graphics2D.setColor(chooseColor);
         graphics2D.drawRect(X1, Y1, pw, ph);
@@ -80,6 +83,8 @@ public class rectangle {
         int pw = X2 - X1;
         int ph = Y2 - Y1;
 
+        selectSpace = new Rectangle(X1, X2, X2 - X1, Y2 - Y1);
+
         Graphics2D graphics2D = paintCanvas.getGraphics2D();
         graphics2D.setColor(chooseColor);
         graphics2D.fillRect(X1, Y1, pw, ph);
@@ -89,7 +94,7 @@ public class rectangle {
 
     public void createShape() {
         shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
-                ShapeType.RECTANGLE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph);
+                ShapeType.RECTANGLE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph, selectSpace, false);
         shapeArray.add(x);
     }
 

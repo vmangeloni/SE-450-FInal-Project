@@ -2,7 +2,6 @@
 
 package model.draw;
 
-import controller.mouseHandler;
 import model.ShapeShadingType;
 import model.ShapeType;
 import view.interfaces.PaintCanvasBase;
@@ -11,27 +10,32 @@ import java.awt.*;
 
 public class shape {
 
-    protected PaintCanvasBase paintCanvas;
-    protected ShapeType shapeType;
-    protected Color primaryColor;
-    protected Color secondaryColor;
-    protected ShapeShadingType shadingType;
-    protected int X1;
-    protected int X2;
-    protected int Y1;
-    protected int Y2;
 
-    protected int[] triX;
-    protected int[] triY;
 
-    protected int pw;
-    protected int ph;
+    public PaintCanvasBase paintCanvas;
+    public ShapeType shapeType;
+    public Color primaryColor;
+    public Color secondaryColor;
+    public ShapeShadingType shadingType;
+    public int X1;
+    public int X2;
+    public int Y1;
+    public int Y2;
 
-    protected boolean select = false;
+    public int[] triX;
+    public int[] triY;
+
+    public int pw;
+    public int ph;
+    public Rectangle selectSpace;
+
+    public boolean shapeSelect;
 
 
     public shape(PaintCanvasBase paintCanvas, ShapeShadingType shadeType, Color primaryColor, Color secondaryColor,
-                 ShapeType shapeType, int x1, int x2, int[] ints, int[] ints1, int pw, int ph) {
+                 ShapeType shapeType, int x1, int x2, int[] ints, int[] ints1, int pw, int ph,
+                 Rectangle selectSpace, boolean select) {
+
         this.paintCanvas = paintCanvas;
         this.shapeType = shapeType;
         this.primaryColor = primaryColor;
@@ -45,9 +49,14 @@ public class shape {
         this.ph = ph;
         this.triX = ints;
         this.triY = ints1;
+        this.selectSpace = selectSpace;
+        this.shapeSelect = select;
+
 
 
     }
+
+    public void selectUpdate (boolean value) {this.shapeSelect = value;}
 }
 
 
