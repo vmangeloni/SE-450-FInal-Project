@@ -8,7 +8,7 @@ import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 import static model.ShapeColor.returnColor;
 
 public class rectangle {
@@ -93,9 +93,12 @@ public class rectangle {
     }
 
     public void createShape() {
+       /*
         shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
                 ShapeType.RECTANGLE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph, selectSpace, false);
         shapeArray.add(x);
+        */
+
     }
 
 

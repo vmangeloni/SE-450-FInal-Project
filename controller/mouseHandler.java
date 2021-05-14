@@ -71,7 +71,6 @@ public class mouseHandler implements MouseListener {
             new selectShape(this);
         }
 
-
     }
 
     @Override
@@ -83,6 +82,10 @@ public class mouseHandler implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) { }
 
+    public PaintCanvasBase getPaintCanvas() {return paintCanvas;}
+    public ShapeColor getPrimaryColor() {return primaryColor;}
+    public ShapeColor getSecondaryColor() {return secondaryColor;}
+    public ShapeShadingType getShadeType() {return shadeType;}
     public int getMouseX() {return this.mouseX;}
     public int getMouseY() {return this.mouseY;}
     public int getMouseX2() {return this.mouseX2;}

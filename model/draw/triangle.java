@@ -5,7 +5,7 @@ import model.ShapeType;
 import model.ShapeShadingType;
 import view.interfaces.PaintCanvasBase;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 import static model.ShapeColor.returnColor;
 
 import java.awt.*;
@@ -90,9 +90,13 @@ public class triangle {
     }
 
     public void createShape() {
+
+        /*
         shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
                 ShapeType.TRIANGLE, X1, X2, drawX, drawY, 0, 0, selectSpace, false);
         shapeArray.add(x);
+        */
+
     }
 
 }

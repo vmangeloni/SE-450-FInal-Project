@@ -5,7 +5,7 @@ import model.ShapeType;
 import model.ShapeShadingType;
 import view.interfaces.PaintCanvasBase;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 import static model.ShapeColor.returnColor;
 
 import java.awt.*;
@@ -84,9 +84,10 @@ public class ellipse {
     }
 
     public void createShape() {
+        /*
         shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
                 ShapeType.ELLIPSE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph, selectSpace, false);
-        shapeArray.add(x);
+        shapeArray.add(x);*/
     }
 
 }

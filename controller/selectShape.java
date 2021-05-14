@@ -5,7 +5,7 @@ import model.draw.shape;
 
 import java.awt.*;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 
 public class selectShape {
     private Rectangle selectShapes;
@@ -17,7 +17,7 @@ public class selectShape {
 
     public selectShape(mouseHandler callMouse){
 
-
+/*
         selectX = callMouse.getMouseX();
         selectY= callMouse.getMouseY();
         selectX2 = callMouse.getMouseX2();
@@ -37,7 +37,7 @@ public class selectShape {
                 s.selectUpdate(true);
                 System.out.println(s.shapeSelect);
                 }
-            }
+            } */
     }
 }
 

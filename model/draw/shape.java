@@ -6,7 +6,7 @@ import model.ShapeType;
 import model.interfaces.IShapePlan;
 import view.interfaces.PaintCanvasBase;
 
-public class shapeBuilder implements IShapePlan {
+public class shape implements IShapePlan {
 
     private ShapeType shapeType;
     private ShapeColor PrimaryColor;
@@ -19,10 +19,7 @@ public class shapeBuilder implements IShapePlan {
     private int Y2;
 
     @Override
-    public void setShapeType(ShapeType setShapeType) {
-        shapeType = setShapeType;
-
-    }
+    public void setShapeType(ShapeType setShapeType) { shapeType = setShapeType; }
 
     public ShapeType getShapeType() {return shapeType;}
 
@@ -55,34 +52,22 @@ public class shapeBuilder implements IShapePlan {
     public PaintCanvasBase getPaintCanvasBase() {return paintCanvas;}
 
     @Override
-    public void setX1(int setX1) {
-        X1 = setX1;
-
-    }
+    public void setX1(int setX1) { X1 = setX1; }
 
     public int getX1() {return X1;}
 
     @Override
-    public void setX2(int setX2) {
-        X2 = setX2;
-
-    }
+    public void setX2(int setX2) { X2 = setX2; }
 
     public int getX2() {return X2;}
 
     @Override
-    public void setY1(int setY1) {
-        Y1 = setY1;
-
-    }
+    public void setY1(int setY1) { Y1 = setY1; }
 
     public int getY1() {return Y1;}
 
     @Override
-    public void setY2(int setY2) {
-        Y2 = setY2;
-
-    }
+    public void setY2(int setY2) { Y2 = setY2; }
 
     public int getY2() {return Y2;}
 }
