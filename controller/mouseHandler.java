@@ -60,8 +60,7 @@ public class mouseHandler implements MouseListener {
 
 
         if (this.mode == mode.DRAW){
-            new createShape(this.shapeType, this.primaryColor, this.secondaryColor, this.shadeType,
-                    this.mouseX,this.mouseY,this.mouseX2,this.mouseY2, this.paintCanvas);
+            new createShape(this);
         }
 
         if (this.mode == mode.SELECT){
@@ -88,5 +87,6 @@ public class mouseHandler implements MouseListener {
     public int getMouseY() {return this.mouseY;}
     public int getMouseX2() {return this.mouseX2;}
     public int getMouseY2() {return this.mouseY2;}
+    public ShapeType getShapeType() {return shapeType;}
 
 }

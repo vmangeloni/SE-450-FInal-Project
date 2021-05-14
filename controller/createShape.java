@@ -1,5 +1,6 @@
 package controller;
 
+import model.MouseMode;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
@@ -7,34 +8,33 @@ import model.draw.ellipse;
 import model.draw.rectangle;
 import model.draw.shape;
 import model.draw.triangle;
-import model.interfaces.IBuildShape;
+import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class createShape {
 
     public static ArrayList<shape> shapeArray = new ArrayList();
 
-
     private PaintCanvasBase paintCanvas;
+    private ApplicationState appState;
+    private ShapeType shapeType;
+    private ShapeColor primaryColor;
+    private ShapeColor secondaryColor;
+    private ShapeShadingType shadeType;
+    private MouseMode mode;
+    private int mouseX;
+    private int mouseX2;
+    private int mouseY;
+    private int mouseY2;
 
-    public createShape(ShapeType shapeType, ShapeColor primaryColor, ShapeColor secondaryColor,
-                       ShapeShadingType shadeType, int mouseX, int mouseY, int mouseX2, int mouseY2,
-                       PaintCanvasBase paintCanvas) {
+
+    public createShape(mouseHandler callMouse) {
 
 
         if (shapeType == shapeType.RECTANGLE){
             new rectangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
-
-            /*
-            for (shape s: shapeArray){
-                System.out.println("ARRAY: " + s.selectSpace);
-            }
-            */
-
         }
 
         if (shapeType == shapeType.ELLIPSE){
