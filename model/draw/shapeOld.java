@@ -8,7 +8,9 @@ import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-public class shape {
+import static controller.createShape.shapeArray;
+
+public class shapeOLD {
 
 
 
@@ -57,6 +59,10 @@ public class shape {
     }
 
     public void selectUpdate (boolean value) {this.shapeSelect = value;}
+
+    public void add(shapeBuilder shape){
+        shapeArray.add((model.draw.shape) shape);
+    }
 }
 
 

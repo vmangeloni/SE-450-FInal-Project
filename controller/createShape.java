@@ -6,7 +6,7 @@ import model.ShapeShadingType;
 import model.ShapeType;
 import model.draw.ellipse;
 import model.draw.rectangle;
-import model.draw.shape;
+//import model.draw.shape;
 import model.draw.triangle;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class createShape {
 
-    public static ArrayList<shape> shapeArray = new ArrayList();
+    //public static ArrayList<shape> shapeArray = new ArrayList();
 
     private PaintCanvasBase paintCanvas;
     private ApplicationState appState;
