@@ -4,11 +4,9 @@ import model.MouseMode;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
-import model.draw.ellipse;
-import model.draw.rectangle;
+import model.draw.*;
 //import model.draw.shape;
-import model.draw.shapeConstructor;
-import model.draw.triangle;
+import model.interfaces.IShapeBuilder;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
@@ -41,8 +39,16 @@ public class createShape {
         this.X2 = callMouse.getMouseX2();
         this.Y1 = callMouse.getMouseY();
         this.Y2 = callMouse.getMouseY2();
-        shapeConstructor cs = new shapeConstructor(this);
-        cs.buildShapePrimaryColor();
+
+        IShapeBuilder newShape = new shapeConstructor(this);
+
+
+
+
+        if (shapeType == shapeType.RECTANGLE){
+            new rectangle(newShape);
+        }
+
     }
     public PaintCanvasBase getPaintCanvasMaster() {return paintCanvas;}
     public ShapeType getShapeTypeMaster() {return shapeType;}
@@ -53,6 +59,11 @@ public class createShape {
     public int getX2Master() {return X2;}
     public int getY1Master() {return Y1;}
     public int getY2Master() {return Y2;}
+
+
+
+
+
 }
 
 

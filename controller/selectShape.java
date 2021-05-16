@@ -1,7 +1,7 @@
 package controller;
 
 import model.draw.rectangle;
-import model.draw.shape;
+import model.draw.Shape;
 
 import java.awt.*;
 

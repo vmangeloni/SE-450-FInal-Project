@@ -6,7 +6,7 @@ import model.ShapeType;
 import model.interfaces.IShapePlan;
 import view.interfaces.PaintCanvasBase;
 
-public class shape implements IShapePlan {
+public class Shape implements IShapePlan {
 
     private ShapeType shapeType;
     private ShapeColor PrimaryColor;

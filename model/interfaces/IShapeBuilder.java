@@ -1,5 +1,9 @@
 package model.interfaces;
 
+import model.draw.Shape;
+
+import java.awt.*;
+
 public interface IShapeBuilder {
 
     public void buildShapeType();
@@ -19,6 +23,8 @@ public interface IShapeBuilder {
     public void buildY1();
 
     public void buildY2();
+
+    public Shape getShape();
 
 
 }

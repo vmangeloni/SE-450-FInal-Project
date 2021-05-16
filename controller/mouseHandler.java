@@ -9,7 +9,6 @@ import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -60,7 +59,9 @@ public class mouseHandler implements MouseListener {
 
 
         if (this.mode == mode.DRAW){
+
             new createShape(this);
+           //new shapeManager(this.shapeType);
         }
 
         if (this.mode == mode.SELECT){

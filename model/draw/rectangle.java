@@ -1,16 +1,67 @@
 package model.draw;
 
-import controller.mouseHandler;
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
-import view.interfaces.PaintCanvasBase;
-
-import java.awt.*;
+import model.interfaces.IShapeBuilder;
 
 //import static controller.createShape.shapeArray;
-import static model.ShapeColor.returnColor;
 
+
+public class rectangle {
+
+    public rectangle(IShapeBuilder newShape) {
+
+        ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
+        shapeBuilder.makeShape();
+        Shape newRec = shapeBuilder.getShape();
+
+
+
+
+
+        System.out.println(newRec.getShapeType());
+        System.out.println(newRec.getPrimaryColor());
+        System.out.println(newRec.getSecondaryColor());
+        System.out.println(newRec.getX1());
+        System.out.println(newRec.getX2());
+
+        //System.out.println("CHECK");
+
+        //IShapeBuilder newRec = new shapeConstructor();
+
+
+
+
+       /*
+        IShapeBuilder rec = new shapeConstructor(cs);
+
+
+
+        ShapeBuilder shapeBuilder = new ShapeBuilder(rec);
+
+        shapeBuilder.makeShape();
+
+        Shape newRec = shapeBuilder.getShape();
+
+
+
+        System.out.println(newRec.getShapeType());
+        System.out.println(newRec.getPrimaryColor());
+        System.out.println(newRec.getSecondaryColor());
+        System.out.println(newRec.getX1());
+        System.out.println(newRec.getX2());
+        */
+
+
+
+    }
+
+
+
+
+}
+
+
+
+/*
 public class rectangle {
 
 
@@ -25,6 +76,10 @@ public class rectangle {
     private int pw;
     private int ph;
     private Rectangle selectSpace;
+
+
+
+
 
 
 
@@ -45,20 +100,20 @@ public class rectangle {
 
         if(getShadeType == getShadeType.OUTLINE){
             drawOutlineRectangle(returnColor(primColor));
-            createShape();
+            //createShape();
 
         }
 
         if(getShadeType == getShadeType.FILLED_IN){
             drawFilledRectangle(returnColor(primColor));
-            createShape();
+            //createShape();
         }
 
         if(getShadeType == getShadeType.OUTLINE_AND_FILLED_IN){
 
             drawFilledRectangle(returnColor(primColor));
             drawOutlineRectangle(returnColor(secColor));
-            createShape();
+            //createShape();
         }
 
 
@@ -92,16 +147,17 @@ public class rectangle {
 
     }
 
+    /*
     public void createShape() {
-       /*
-        shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
+
+        Shape x = new Shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
                 ShapeType.RECTANGLE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph, selectSpace, false);
         shapeArray.add(x);
-        */
+
 
     }
+    */
 
 
 
 
-}
