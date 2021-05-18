@@ -3,7 +3,10 @@ package model.interfaces;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
+import model.draw.rectangle;
 import view.interfaces.PaintCanvasBase;
+
+import java.awt.*;
 
 public interface IShapePlan {
 
@@ -25,4 +28,13 @@ public interface IShapePlan {
 
     public void setY2(int setY2);
 
+    public void setShapeSelect (boolean shapeSelect);
+
+    public void setSelectSpace (Rectangle selectSpace);
+
+    public void setIsSelected(boolean isSelected);
+
+    public void setPW(int pw);
+
+    public void setPH(int ph);
 }

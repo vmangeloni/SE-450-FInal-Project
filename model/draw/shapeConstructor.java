@@ -24,6 +24,8 @@ public class shapeConstructor implements IShapeBuilder {
     private int X2;
     private int Y1;
     private int Y2;
+    private int ph;
+    private int pw;
 
 
 
@@ -80,7 +82,7 @@ public class shapeConstructor implements IShapeBuilder {
     @Override
     public void buildX2() {
         final int x2 = this.X2;
-        shape.setX1(x2);
+        shape.setX2(x2);
 
     }
 
@@ -94,6 +96,30 @@ public class shapeConstructor implements IShapeBuilder {
     public void buildY2() {
         final int y2 = this.Y2;
         shape.setY2(y2);
+    }
+
+    public void buildShapeSelect() {
+        shape.setShapeSelect(false);
+    }
+
+    public void buildSelectSpace() {
+        shape.setSelectSpace(null);
+    }
+
+    @Override
+    public void buildPH() {
+        final int ph = this.ph;
+        shape.setPH(ph);
+    }
+
+    @Override
+    public void buildPW() {
+        final int pw = this.pw;
+        shape.setPW(pw);
+    }
+
+    public void buildIsSelected() {
+        shape.setIsSelected(false);
     }
 
     @Override

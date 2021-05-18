@@ -24,6 +24,14 @@ public interface IShapeBuilder {
 
     public void buildY2();
 
+    public void buildIsSelected();
+
+    public void buildSelectSpace();
+
+    public void buildPH();
+
+    public void buildPW();
+
     public Shape getShape();
 
 

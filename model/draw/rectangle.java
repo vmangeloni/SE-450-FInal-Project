@@ -2,56 +2,77 @@ package model.draw;
 
 import model.interfaces.IShapeBuilder;
 
-//import static controller.createShape.shapeArray;
+import model.ShapeColor;
+import model.ShapeShadingType;
+
+
+import java.awt.*;
+
+import static controller.createShape.shapeArray;
+import static model.ShapeColor.returnColor;
 
 
 public class rectangle {
 
+    private Rectangle selectSpace;
+
     public rectangle(IShapeBuilder newShape) {
+
+
 
         ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
         shapeBuilder.makeShape();
-        Shape newRec = shapeBuilder.getShape();
+        Shape nwSPE = shapeBuilder.getShape();
 
 
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE) {
+            drawOutlineRectangle(nwSPE, nwSPE.getPrimaryColor());
+            addShape(nwSPE); }
 
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
+            drawFilledRectangle(nwSPE, nwSPE.getPrimaryColor());
+            addShape(nwSPE);}
 
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
+            drawFilledRectangle(nwSPE, nwSPE.getPrimaryColor());
+            drawOutlineRectangle(nwSPE, nwSPE.getSecondaryColor());
+            addShape(nwSPE);}
+    }
 
-        System.out.println(newRec.getShapeType());
-        System.out.println(newRec.getPrimaryColor());
-        System.out.println(newRec.getSecondaryColor());
-        System.out.println(newRec.getX1());
-        System.out.println(newRec.getX2());
+    public void drawOutlineRectangle(Shape nwSPE, ShapeColor color) {
 
-        //System.out.println("CHECK");
+        int pw = nwSPE.getX2() - nwSPE.getX1();
+        int ph = nwSPE.getY2() - nwSPE.getY1();
 
-        //IShapeBuilder newRec = new shapeConstructor();
+        nwSPE.setPW(pw);
+        nwSPE.setPH(ph);
 
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+        nwSPE.setSelectSpace(selectSpace);
 
+        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.drawRect(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+    }
 
+    public void drawFilledRectangle(Shape nwSPE, ShapeColor color) {
 
-       /*
-        IShapeBuilder rec = new shapeConstructor(cs);
+        int pw = nwSPE.getX2() - nwSPE.getX1();
+        int ph = nwSPE.getY2() - nwSPE.getY1();
 
+        nwSPE.setPW(pw);
+        nwSPE.setPH(ph);
 
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+        nwSPE.setSelectSpace(selectSpace);
 
-        ShapeBuilder shapeBuilder = new ShapeBuilder(rec);
+        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.fillRect(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+    }
 
-        shapeBuilder.makeShape();
-
-        Shape newRec = shapeBuilder.getShape();
-
-
-
-        System.out.println(newRec.getShapeType());
-        System.out.println(newRec.getPrimaryColor());
-        System.out.println(newRec.getSecondaryColor());
-        System.out.println(newRec.getX1());
-        System.out.println(newRec.getX2());
-        */
-
-
-
+    public void addShape(Shape nwSPE) {
+        shapeArray.add(nwSPE);
     }
 
 

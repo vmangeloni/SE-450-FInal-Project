@@ -24,6 +24,10 @@ public class ShapeBuilder {
         this.ishapeBuilder.buildY1();
         this.ishapeBuilder.buildX2();
         this.ishapeBuilder.buildY2();
+        this.ishapeBuilder.buildIsSelected();
+        this.ishapeBuilder.buildSelectSpace();
+        this.ishapeBuilder.buildPW();
+        this.ishapeBuilder.buildPH();
     }
 
 

@@ -3,6 +3,7 @@ package model.draw;
 import model.ShapeColor;
 import model.ShapeType;
 import model.ShapeShadingType;
+import model.interfaces.IShapeBuilder;
 import view.interfaces.PaintCanvasBase;
 
 //import static controller.createShape.shapeArray;
@@ -12,6 +13,65 @@ import java.awt.*;
 
 public class ellipse {
 
+    private Rectangle selectSpace;
+
+    public ellipse(IShapeBuilder newShape) {
+
+        ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
+        shapeBuilder.makeShape();
+        Shape nwSPE = shapeBuilder.getShape();
+
+
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE) {
+            drawOutlineEllipse(nwSPE, nwSPE.getPrimaryColor()); }
+
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
+            drawFilledEllipse(nwSPE, nwSPE.getPrimaryColor()); }
+
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
+            drawFilledEllipse(nwSPE, nwSPE.getPrimaryColor());
+            drawOutlineEllipse(nwSPE, nwSPE.getSecondaryColor());}
+    }
+
+    public void drawOutlineEllipse(Shape nwSPE, ShapeColor color) {
+
+        int pw = nwSPE.getX2() - nwSPE.getX1();
+        int ph = nwSPE.getY2() - nwSPE.getY1();
+
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+
+        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.drawOval(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+    }
+
+    public void drawFilledEllipse(Shape nwSPE, ShapeColor color) {
+
+        int pw = nwSPE.getX2() - nwSPE.getX1();
+        int ph = nwSPE.getY2() - nwSPE.getY1();
+
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+
+
+        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.fillOval(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     private int X1;
     private int X2;
     private int Y1;
@@ -88,6 +148,4 @@ public class ellipse {
         shape x = new shape(paintCanvas, getShadeType, returnColor(primColor), returnColor(secColor),
                 ShapeType.ELLIPSE, X1, X2, new int[]{0, 0, 0}, new int[]{0, 0, 0}, pw, ph, selectSpace, false);
         shapeArray.add(x);*/
-    }
 
-}

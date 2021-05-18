@@ -61,7 +61,6 @@ public class mouseHandler implements MouseListener {
         if (this.mode == mode.DRAW){
 
             new createShape(this);
-           //new shapeManager(this.shapeType);
         }
 
         if (this.mode == mode.SELECT){

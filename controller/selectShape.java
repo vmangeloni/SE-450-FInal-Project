@@ -1,9 +1,10 @@
 package controller;
 
-import model.draw.rectangle;
 import model.draw.Shape;
 
 import java.awt.*;
+
+import static controller.createShape.shapeArray;
 
 //import static controller.createShape.shapeArray;
 
@@ -15,9 +16,9 @@ public class selectShape {
     private int selectX2;
     private int selectY2;
 
-    public selectShape(mouseHandler callMouse){
+    public selectShape(mouseHandler callMouse) {
 
-/*
+
         selectX = callMouse.getMouseX();
         selectY= callMouse.getMouseY();
         selectX2 = callMouse.getMouseX2();
@@ -26,18 +27,30 @@ public class selectShape {
         int pw = selectX2 - selectX;
         int ph = selectY2 - selectY;
 
-        for (shape s: shapeArray){
-            System.out.println(s.shapeSelect);
-        }
 
-        selectShapes = new Rectangle(selectX, selectX2, pw, ph);
+        selectShapes = new Rectangle(selectX, selectY, pw, ph);
 
-        for (shape s: shapeArray){
-            if(s.selectSpace.intersects(selectShapes)){
-                s.selectUpdate(true);
-                System.out.println(s.shapeSelect);
+        for (Shape s: shapeArray){
+            if(s.getSelectSpace().intersects(selectShapes)){
+                s.setIsSelected(true);
+                drawDashedLine(s, Color.BLACK);
+            }
+            else{
+                s.setIsSelected(false);
+                drawDashedLine(s, Color.WHITE);
                 }
-            } */
+            }
+
+    }
+
+    public void drawDashedLine(Shape s, Color color) {
+        Graphics2D graphics2D = s.getPaintCanvasBase().getGraphics2D();
+
+        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+        graphics2D.setStroke(stroke);
+        graphics2D.setColor(color);
+        graphics2D.drawRect(s.getX1() - 5, s.getY1() - 5, s.getPW() + 10, s.getPH() + 10);
+
     }
 }
 

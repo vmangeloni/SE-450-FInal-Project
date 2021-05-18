@@ -6,6 +6,8 @@ import model.ShapeType;
 import model.interfaces.IShapePlan;
 import view.interfaces.PaintCanvasBase;
 
+import java.awt.*;
+
 public class Shape implements IShapePlan {
 
     private ShapeType shapeType;
@@ -17,6 +19,11 @@ public class Shape implements IShapePlan {
     private int X2;
     private int Y1;
     private int Y2;
+    private int ph;
+    private int pw;
+    private boolean shapeSelect;
+    private Rectangle selectSpace;
+    private boolean isSelect;
 
     @Override
     public void setShapeType(ShapeType setShapeType) { shapeType = setShapeType; }
@@ -70,4 +77,30 @@ public class Shape implements IShapePlan {
     public void setY2(int setY2) { Y2 = setY2; }
 
     public int getY2() {return Y2;}
+
+    @Override
+    public void setShapeSelect(boolean shapeSelect) {this.shapeSelect = shapeSelect; }
+
+    public boolean getShapeSelect() {return shapeSelect; }
+
+    @Override
+    public void setSelectSpace(Rectangle selectSpace) {this.selectSpace = selectSpace;}
+
+    public Rectangle getSelectSpace() {return selectSpace;}
+
+    @Override
+    public void setIsSelected(boolean isSelected) {this.isSelect = isSelected; }
+
+    public boolean getIsSelected() {return isSelect;}
+
+    @Override
+    public void setPW(int pw) { this.pw = pw;}
+
+    public int getPW() { return pw;}
+
+    @Override
+    public void setPH(int ph) { this.ph = ph;}
+
+    public int getPH() { return ph;}
+
 }

@@ -5,16 +5,19 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.draw.*;
-//import model.draw.shape;
+import model.draw.Shape;
 import model.interfaces.IShapeBuilder;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
-
-import java.awt.*;
 import java.util.ArrayList;
 
+
+
 public class createShape {
-    //public static ArrayList<shape> shapeArray = new ArrayList();
+
+    public static ArrayList<Shape> shapeArray = new ArrayList();
+
+
     private PaintCanvasBase paintCanvas;
     private ApplicationState appState;
     private ShapeType shapeType;
@@ -49,6 +52,14 @@ public class createShape {
             new rectangle(newShape);
         }
 
+        if (shapeType == shapeType.ELLIPSE){
+            new ellipse(newShape);
+        }
+
+        if (shapeType == shapeType.TRIANGLE){
+            new triangle(newShape);
+        }
+
     }
     public PaintCanvasBase getPaintCanvasMaster() {return paintCanvas;}
     public ShapeType getShapeTypeMaster() {return shapeType;}
@@ -68,15 +79,3 @@ public class createShape {
 
 
 
-   /*
-        if (shapeType == shapeType.RECTANGLE){
-            new rectangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
-        }
-
-        if (shapeType == shapeType.ELLIPSE){
-            new ellipse(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
-        }
-
-        if (shapeType == shapeType.TRIANGLE){
-            new triangle(mouseX, mouseY, mouseX2, mouseY2, paintCanvas, primaryColor, shadeType, secondaryColor);
-        }*/

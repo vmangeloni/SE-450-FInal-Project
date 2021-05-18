@@ -3,6 +3,7 @@ package model.draw;
 import model.ShapeColor;
 import model.ShapeType;
 import model.ShapeShadingType;
+import model.interfaces.IShapeBuilder;
 import view.interfaces.PaintCanvasBase;
 
 //import static controller.createShape.shapeArray;
@@ -14,6 +15,77 @@ import static model.ShapeColor.returnColor;
 
 public class triangle {
 
+    private Rectangle selectSpace;
+
+    public triangle(IShapeBuilder newShape){
+
+        ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
+        shapeBuilder.makeShape();
+        Shape nwSPE = shapeBuilder.getShape();
+
+
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE) {
+            drawOutlineEllipse(nwSPE, nwSPE.getPrimaryColor()); }
+
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
+            drawFilledEllipse(nwSPE, nwSPE.getPrimaryColor()); }
+
+        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
+            drawFilledEllipse(nwSPE, nwSPE.getPrimaryColor());
+            drawOutlineEllipse(nwSPE, nwSPE.getSecondaryColor());}
+    }
+
+    public void drawOutlineEllipse(Shape nwSPE, ShapeColor color) {
+
+        int [] triX = new int[] {nwSPE.getX2(), nwSPE.getX1(), nwSPE.getX1()};
+        int [] triY = new int[] {nwSPE.getY2(), nwSPE.getY1(), nwSPE.getY1()};
+
+        int[] drawX = new int[] {triX[0] + 13, triX[1] - 7, triX[2] - 7};
+        int[] drawY = new int[] {triY[0] + 3, triY[1] + 4, triY[2] - 9};
+
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), nwSPE.getX2() - nwSPE.getX1(),
+                nwSPE.getY2() - nwSPE.getY1());
+
+        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.drawPolygon(drawX, drawY, 3);
+    }
+
+    public void drawFilledEllipse(Shape nwSPE, ShapeColor color) {
+
+        int [] triX = new int[] {nwSPE.getX2(), nwSPE.getX1(), nwSPE.getX1()};
+        int [] triY = new int[] {nwSPE.getY2(), nwSPE.getY1(), nwSPE.getY1()};
+
+        int[] drawX = new int[] {triX[0] + 13, triX[1] - 7, triX[2] - 7};
+        int[] drawY = new int[] {triY[0] + 3, triY[1] + 4, triY[2] - 9};
+
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), nwSPE.getX2() - nwSPE.getX1(),
+                nwSPE.getY2() - nwSPE.getY1());
+
+        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.fillPolygon(drawX, drawY, 3);
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     private final ShapeColor primColor;
     private final ShapeColor secColor;
     private final ShapeShadingType getShadeType;
@@ -97,7 +169,4 @@ public class triangle {
         shapeArray.add(x);
         */
 
-    }
-
-}
 
