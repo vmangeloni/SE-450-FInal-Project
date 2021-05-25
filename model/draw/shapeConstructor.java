@@ -118,6 +118,11 @@ public class shapeConstructor implements IShapeBuilder {
         shape.setPW(pw);
     }
 
+    @Override
+    public void buildIsDeleted() {
+        shape.setIsDeleted(false);
+    }
+
     public void buildIsSelected() {
         shape.setIsSelected(false);
     }

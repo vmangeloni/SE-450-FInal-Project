@@ -37,4 +37,6 @@ public interface IShapePlan {
     public void setPW(int pw);
 
     public void setPH(int ph);
+
+    public void setIsDeleted(boolean isDeleted);
 }

@@ -28,7 +28,6 @@ public class mouseHandler implements MouseListener {
     private int mouseX2;
     private int mouseY2;
 
-
     public mouseHandler(PaintCanvasBase paintCanvas, ApplicationState appState) {
         this.paintCanvas = paintCanvas;
         this.appState = appState;
@@ -48,33 +47,24 @@ public class mouseHandler implements MouseListener {
         this.mouseX2 = e.getX();
         this.mouseY2 = e.getY();
 
-        int pw = mouseX2 - mouseX;
-        int ph = mouseY2 - mouseY;
-
         this.shapeType = appState.getActiveShapeType();
         this.primaryColor = appState.getActivePrimaryColor();
         this.secondaryColor = appState.getActiveSecondaryColor();
         this.shadeType = appState.getActiveShapeShadingType();
         this.mode = appState.getActiveMouseMode();
 
-
-        if (this.mode == mode.DRAW){
-
+        if (this.mode == mode.DRAW || this.mode == mode.MOVE){
             new createShape(this);
         }
 
         if (this.mode == mode.SELECT){
             new selectShape(this);
         }
-
-        if (this.mode == mode.MOVE){
-            new selectShape(this);
-        }
-
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) {
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) { }
@@ -82,6 +72,7 @@ public class mouseHandler implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) { }
 
+    public MouseMode getMouseMode() {return mode;}
     public PaintCanvasBase getPaintCanvas() {return paintCanvas;}
     public ShapeColor getPrimaryColor() {return primaryColor;}
     public ShapeColor getSecondaryColor() {return secondaryColor;}

@@ -32,6 +32,8 @@ public interface IShapeBuilder {
 
     public void buildPW();
 
+    public void buildIsDeleted();
+
     public Shape getShape();
 
 

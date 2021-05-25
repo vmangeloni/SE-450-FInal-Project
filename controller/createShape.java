@@ -33,6 +33,7 @@ public class createShape {
 
     public createShape(mouseHandler callMouse) {
 
+        this.mode = callMouse.getMouseMode();
         this.paintCanvas = callMouse.getPaintCanvas();
         this.shapeType = callMouse.getShapeType();
         this.primaryColor = callMouse.getPrimaryColor();
@@ -45,20 +46,26 @@ public class createShape {
 
         IShapeBuilder newShape = new shapeConstructor(this);
 
+        ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
+        shapeBuilder.makeShape();
+        Shape nwSHAPE = shapeBuilder.getShape();
 
-
-
-        if (shapeType == shapeType.RECTANGLE){
-            new rectangle(newShape);
+        if (shapeType == shapeType.RECTANGLE & this.mode == mode.DRAW){
+            new rectangle(nwSHAPE);
         }
 
-        if (shapeType == shapeType.ELLIPSE){
+        if (shapeType == shapeType.ELLIPSE & this.mode == mode.DRAW){
             new ellipse(newShape);
         }
 
-        if (shapeType == shapeType.TRIANGLE){
+        if (shapeType == shapeType.TRIANGLE & this.mode == mode.DRAW){
             new triangle(newShape);
         }
+
+        if (this.mode == mode.MOVE){
+            new moveShape(callMouse, this, nwSHAPE);
+        }
+
 
     }
     public PaintCanvasBase getPaintCanvasMaster() {return paintCanvas;}

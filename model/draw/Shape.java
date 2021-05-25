@@ -24,6 +24,7 @@ public class Shape implements IShapePlan {
     private boolean shapeSelect;
     private Rectangle selectSpace;
     private boolean isSelect;
+    private boolean isDeleted;
 
     @Override
     public void setShapeType(ShapeType setShapeType) { shapeType = setShapeType; }
@@ -100,6 +101,13 @@ public class Shape implements IShapePlan {
 
     @Override
     public void setPH(int ph) { this.ph = ph;}
+
+    @Override
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public boolean getIsDeleted() {return isDeleted;}
 
     public int getPH() { return ph;}
 
