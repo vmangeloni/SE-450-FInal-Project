@@ -40,10 +40,14 @@ public class selectShape {
 
         selectShapes = new Rectangle(selectX, selectY, selectPW + 1, selectPH + 1);
 
+
         for (Shape s: shapeArray){
-            if(s.getSelectSpace().intersects(selectShapes)){
-                s.setIsSelected(true);
-                drawDashedLine(s, Color.BLACK);
+            if(s.getSelectSpace().intersects(selectShapes) || s.getIsMoved() == true){
+                if (s.getIsDeleted() == false) {
+                    s.setIsSelected(true);
+                    drawDashedLine(s, Color.BLACK);
+                    s.setIsMoved(false);
+                }
             }
             else{
                 s.setIsSelected(false);

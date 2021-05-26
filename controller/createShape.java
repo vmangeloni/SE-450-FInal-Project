@@ -44,16 +44,21 @@ public class createShape {
         this.Y1 = callMouse.getMouseY();
         this.Y2 = callMouse.getMouseY2();
 
+
         IShapeBuilder newShape = new shapeConstructor(this);
 
+        /*
         ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
         shapeBuilder.makeShape();
         Shape nwSHAPE = shapeBuilder.getShape();
+        */
+
 
         if (shapeType == shapeType.RECTANGLE & this.mode == mode.DRAW){
-            new rectangle(nwSHAPE);
+            new rectangle(this);
         }
 
+        /*
         if (shapeType == shapeType.ELLIPSE & this.mode == mode.DRAW){
             new ellipse(newShape);
         }
@@ -61,10 +66,14 @@ public class createShape {
         if (shapeType == shapeType.TRIANGLE & this.mode == mode.DRAW){
             new triangle(newShape);
         }
+        */
+
 
         if (this.mode == mode.MOVE){
-            new moveShape(callMouse, this, nwSHAPE);
+            new moveShape(callMouse, this);
         }
+
+
 
 
     }

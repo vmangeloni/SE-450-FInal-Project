@@ -34,6 +34,8 @@ public interface IShapeBuilder {
 
     public void buildIsDeleted();
 
+    public void buildIsMoved();
+
     public Shape getShape();
 
 

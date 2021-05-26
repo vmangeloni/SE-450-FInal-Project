@@ -123,6 +123,10 @@ public class shapeConstructor implements IShapeBuilder {
         shape.setIsDeleted(false);
     }
 
+    public void buildIsMoved() {
+        shape.setIsMoved(false);
+    }
+
     public void buildIsSelected() {
         shape.setIsSelected(false);
     }

@@ -25,7 +25,7 @@ public class moveShape {
     int maxX = 0;
     int maxY = 0;
 
-    public moveShape(mouseHandler callMouse, createShape cs, Shape newShape) {
+    public moveShape(mouseHandler callMouse, createShape CS) {
 
         for (Shape sa : shapeArray) {
             if (sa.getIsSelected() == true) {
@@ -39,10 +39,13 @@ public class moveShape {
             }
         }
 
-
-
         for (Shape s: MoveShapeArray) {
             if (s.getIsSelected() == true) {
+
+                IShapeBuilder shapeBuilderShape = new shapeConstructor(CS);
+                ShapeBuilder shapeBuilder = new ShapeBuilder(shapeBuilderShape);
+                shapeBuilder.makeShape();
+                Shape newShape = shapeBuilder.getShape();
 
                 int DiffX = callMouse.getMouseX() - s.getX1();
                 int DiffY = callMouse.getMouseY() - s.getY1();
@@ -62,15 +65,17 @@ public class moveShape {
                 newShape.setPW(s.getPW());
                 newShape.setPH(s.getPH());
                 newShape.setX2(s.getX2());
-                newShape.setIsSelected(s.getIsSelected());
+                newShape.setIsSelected(true);
                 newShape.setX1(newX);
                 newShape.setY1(newY);
                 newShape.setSelectSpace(new Rectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH()));
+                newShape.setIsMoved(true);
+
 
                 StatusGrabber statusGrabber = new StatusGrabber();
                 StatusObserver observer1 = new StatusObserver(statusGrabber);
-                statusGrabber.setIsDeletedObserver(false);
-;
+                statusGrabber.setIsDeletedObserver(s, true);
+
                 if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
                     su.drawOutlineRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
                             newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
@@ -88,10 +93,10 @@ public class moveShape {
                             newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
                     shapeArray.add(newShape);}
 
-
-
             }
         }
+
+        new selectShape(callMouse);
 
     }
 

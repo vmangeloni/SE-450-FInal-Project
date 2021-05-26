@@ -15,11 +15,11 @@ public class StatusObserver implements Observer {
     public StatusObserver(Status statusGrabber){
         this.statusGrabber = statusGrabber;
         this.observerID = ++ observerIDTracker;
+        statusGrabber.register(this);
     }
 
     @Override
     public void update(boolean isDeleted) {
         this.isDeleted = isDeleted;
-        System.out.println("CHANGED");
     }
 }

@@ -28,6 +28,8 @@ public class ShapeBuilder {
         this.ishapeBuilder.buildSelectSpace();
         this.ishapeBuilder.buildPW();
         this.ishapeBuilder.buildPH();
+        this.ishapeBuilder.buildIsMoved();
+        this.ishapeBuilder.buildIsDeleted();
     }
 
 

@@ -25,6 +25,7 @@ public class Shape implements IShapePlan {
     private Rectangle selectSpace;
     private boolean isSelect;
     private boolean isDeleted;
+    private boolean isMoved;
 
     @Override
     public void setShapeType(ShapeType setShapeType) { shapeType = setShapeType; }
@@ -83,6 +84,10 @@ public class Shape implements IShapePlan {
     public void setShapeSelect(boolean shapeSelect) {this.shapeSelect = shapeSelect; }
 
     public boolean getShapeSelect() {return shapeSelect; }
+
+    public void setIsMoved(boolean isMoved) {this.isMoved = isMoved; }
+
+    public boolean getIsMoved() {return isMoved; }
 
     @Override
     public void setSelectSpace(Rectangle selectSpace) {this.selectSpace = selectSpace;}

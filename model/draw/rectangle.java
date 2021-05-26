@@ -1,5 +1,6 @@
 package model.draw;
 
+import controller.createShape;
 import controller.shapeUtility;
 import model.interfaces.IShapeBuilder;
 
@@ -18,7 +19,12 @@ public class rectangle {
 
     private Rectangle selectSpace;
 
-    public rectangle(Shape nwSPE) {
+    public rectangle(createShape CS) {
+
+        IShapeBuilder newShape = new shapeConstructor(CS);
+        ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
+        shapeBuilder.makeShape();
+        Shape nwSPE = shapeBuilder.getShape();
 
         shapeUtility su = new shapeUtility();
         su.shapeUtility(nwSPE.getX1(), nwSPE.getX2(), nwSPE.getY1(), nwSPE.getY2());
@@ -30,7 +36,7 @@ public class rectangle {
         nwSPE.setPW(su.getPWUtility());
         nwSPE.setPH(su.getPHUtility());
 
-        System.out.println(nwSPE.getIsDeleted());
+        //System.out.println(nwSPE.getIsDeleted());
 
         selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), nwSPE.getPW(), nwSPE.getPH());
         nwSPE.setSelectSpace(selectSpace);
