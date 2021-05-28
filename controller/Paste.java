@@ -5,6 +5,7 @@ import model.draw.Shape;
 
 import static controller.Copy.copyArray;
 import static controller.createShape.shapeArray;
+import static controller.shapeUtility.undoArray;
 
 public class Paste {
 
@@ -14,23 +15,10 @@ public class Paste {
     public void paste(){
 
         for(Shape newShape: copyArray){
+            su.draw(newShape);
+            shapeArray.add(newShape);
+            undoArray.add(0, newShape);
 
-            if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
-                su.drawOutlineRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
-                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                shapeArray.add(newShape); }
-
-            if(newShape.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
-                su.drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
-                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                shapeArray.add(newShape);}
-
-            if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-                su.drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
-                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                su.drawOutlineRectangle(newShape.getX1(), newShape.getX2(), newShape.getPW(), newShape.getPH(),
-                        newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
-                shapeArray.add(newShape);}
         }
 
     }

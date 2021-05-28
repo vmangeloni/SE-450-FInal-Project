@@ -1,13 +1,20 @@
 package controller;
 
 import model.ShapeColor;
+import model.ShapeShadingType;
+import model.ShapeType;
+import model.draw.Shape;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import static controller.createShape.shapeArray;
+import static model.ShapeColor.WHITE;
 import static model.ShapeColor.returnColor;
 
-public class shapeUtility {
+public class shapeUtility implements ICommand, IUndoable{
 
     private int setX1;
     private int setX2;
@@ -15,6 +22,9 @@ public class shapeUtility {
     private int setY2;
     private int setPW;
     private int setPH;
+
+    public static ArrayList<Shape> undoArray = new ArrayList();
+
 
     public void shapeUtility(int X1, int X2, int Y1, int Y2) {
         this.setX1 = getShapeRecCoord(X1, X2, Y1, Y2)[0];
@@ -77,6 +87,42 @@ public class shapeUtility {
     public int getPWUtility() {return setPW;}
     public int getPHUtility() {return setPH;}
 
+
+    public void draw(Shape newShape) {
+        if (newShape.getShapeType() == ShapeType.RECTANGLE) {
+
+            if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
+                drawOutlineRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+            }
+
+            if(newShape.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
+                drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+                }
+
+            if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
+                drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+                drawOutlineRectangle(newShape.getX1(), newShape.getX2(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
+                }
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
     public void drawOutlineRectangle(int X1, int Y1, int pw, int ph, PaintCanvasBase paintCanvasBase, ShapeColor color) {
 
         Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
@@ -91,4 +137,30 @@ public class shapeUtility {
         graphics2D.fillRect(X1, Y1, pw, ph);
     }
 
+    public void clearCanvas(PaintCanvasBase paintCanvasBase){
+        Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
+        graphics2D.setColor(returnColor(WHITE));
+        graphics2D.fillRect(0, 0, paintCanvasBase.getWidth(), paintCanvasBase.getHeight());
+
+
+    }
+
+    @Override
+    public void execute() throws IOException {
+        CommandHistory.add(this);
+        System.out.println("UNDO!");
+    }
+
+    @Override
+    public void undo() {
+        System.out.println("UNDO!");
+
+    }
+
+    @Override
+    public void redo() {
+
+    }
 }
+
+

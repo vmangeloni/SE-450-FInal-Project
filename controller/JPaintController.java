@@ -29,8 +29,8 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_SECONDARY_COLOR, () -> applicationState.setActiveSecondaryColor());
         uiModule.addEvent(EventName.CHOOSE_SHADING_TYPE, () -> applicationState.setActiveShadingType());
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> applicationState.setActiveStartAndEndPointMode());
-        uiModule.addEvent(EventName.UNDO, () -> new undoShape().run());
-        uiModule.addEvent(EventName.REDO, () -> new redoShape().run());
+        uiModule.addEvent(EventName.UNDO, () -> new Undo(paintCanvas).execute());
+        uiModule.addEvent(EventName.REDO, () -> new Redo().execute());
         uiModule.addEvent(EventName.COPY, () -> new Copy().copy(paintCanvas, (ApplicationState) applicationState));
         uiModule.addEvent(EventName.PASTE, () -> new Paste().paste());
     }

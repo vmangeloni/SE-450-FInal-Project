@@ -14,11 +14,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static controller.createShape.shapeArray;
+import static controller.shapeUtility.undoArray;
 import static model.ShapeColor.returnColor;
 
 public class moveShape {
 
     public static ArrayList<Shape> MoveShapeArray = new ArrayList();
+
     shapeUtility su = new shapeUtility();
 
     Shape S;
@@ -38,6 +40,8 @@ public class moveShape {
                 }
             }
         }
+
+
 
         for (Shape s: MoveShapeArray) {
             if (s.getIsSelected() == true) {
@@ -76,27 +80,23 @@ public class moveShape {
                 StatusObserver observer1 = new StatusObserver(statusGrabber);
                 statusGrabber.setIsDeletedObserver(s, true);
 
-                if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
-                    su.drawOutlineRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
-                            newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                    shapeArray.add(newShape); }
+                shapeArray.remove(s);
+                shapeArray.add(newShape);
 
-                if(newShape.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
-                    su.drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
-                            newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                    shapeArray.add(newShape);}
-
-                if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-                    su.drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
-                            newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                    su.drawOutlineRectangle(newShape.getX1(), newShape.getX2(), newShape.getPW(), newShape.getPH(),
-                            newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
-                    shapeArray.add(newShape);}
+                su.clearCanvas(s.getPaintCanvasBase());
+                undoArray.add(0, newShape);
 
             }
         }
 
         new selectShape(callMouse);
+        for (Shape sa : shapeArray){
+            su.draw(sa);
+        }
+
+
+
+
 
     }
 

@@ -6,7 +6,7 @@ import java.awt.*;
 
 import static controller.createShape.shapeArray;
 
-//import static controller.createShape.shapeArray;
+
 
 public class selectShape {
     private Rectangle selectShapes;

@@ -44,10 +44,11 @@ public class StatusGrabber implements Status {
         System.out.println(isDeleted);
         s.setIsDeleted(isDeleted);
         s.setIsSelected(false);
-        s.setPrimaryColor(ShapeColor.WHITE);
-        s.setSecondaryColor(ShapeColor.WHITE);
+        //s.setPrimaryColor(ShapeColor.WHITE);
+        //s.setSecondaryColor(ShapeColor.WHITE);
         notifyObserver();
 
+        /*
         if(s.getShapeShadingType() == ShapeShadingType.OUTLINE) {
             su.drawOutlineRectangle(s.getX1(), s.getY1(), s.getPW(), s.getPH(),
                     s.getPaintCanvasBase(), s.getPrimaryColor()); }
@@ -61,5 +62,7 @@ public class StatusGrabber implements Status {
                     s.getPaintCanvasBase(), s.getPrimaryColor());
             su.drawOutlineRectangle(s.getX1(), s.getX2(), s.getPW(), s.getPH(),
                     s.getPaintCanvasBase(), s.getSecondaryColor()); }
+
+         */
     }
 }
