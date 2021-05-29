@@ -44,7 +44,13 @@ public class rectangle  {
 
         su.draw(nwSPE);
         addShape(nwSPE);
+
+        //System.out.println("---------------DRAW---------");
+        //System.out.println(shapeArray);
         }
+
+
+
 
     public void addShape(Shape nwSPE) {
         shapeArray.add(nwSPE);
@@ -52,11 +58,10 @@ public class rectangle  {
         if(!undoArray.contains(nwSPE)){
             undoArray.add(0, nwSPE);}
 
-        /*
-        System.out.println("--------------DRAW---------------");
-        System.out.println("SHAPE "+ shapeArray);
-        System.out.println("UNDO " + undoArray); */
+
     }
+
+
 
 
 }

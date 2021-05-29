@@ -108,6 +108,24 @@ public class shapeUtility implements ICommand, IUndoable{
                 }
 
         }
+
+        if (newShape.getShapeType() == ShapeType.ELLIPSE) {
+            if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
+                drawOutlineEllipse(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+            }
+            if (newShape.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
+                drawFilledEllipse(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+            }
+            if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
+                drawFilledEllipse(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+                drawOutlineEllipse(newShape.getX1(), newShape.getX2(), newShape.getPW(), newShape.getPH(),
+                        newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
+            }
+
+        }
     }
 
     public void drawOutlineRectangle(int X1, int Y1, int pw, int ph, PaintCanvasBase paintCanvasBase, ShapeColor color) {
@@ -123,6 +141,26 @@ public class shapeUtility implements ICommand, IUndoable{
         graphics2D.setColor(returnColor(color));
         graphics2D.fillRect(X1, Y1, pw, ph);
     }
+
+    public void drawOutlineEllipse(int X1, int Y1, int pw, int ph, PaintCanvasBase paintCanvasBase, ShapeColor color) {
+
+        Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.drawOval(X1, Y1, pw, ph);
+    }
+
+    public void drawFilledEllipse(int X1, int Y1, int pw, int ph, PaintCanvasBase paintCanvasBase, ShapeColor color) {
+
+        Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.fillOval(X1, Y1, pw, ph);
+    }
+
+
+
+
+
+
 
     public void clearCanvas(PaintCanvasBase paintCanvasBase){
         Graphics2D graphics2D = paintCanvasBase.getGraphics2D();

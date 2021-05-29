@@ -58,15 +58,18 @@ public class createShape {
             new rectangle(this);
         }
 
-        /*
+
         if (shapeType == shapeType.ELLIPSE & this.mode == mode.DRAW){
-            new ellipse(newShape);
+            new ellipse(this);
         }
 
+        /*
         if (shapeType == shapeType.TRIANGLE & this.mode == mode.DRAW){
             new triangle(newShape);
         }
         */
+
+
 
 
         if (this.mode == mode.MOVE){

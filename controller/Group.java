@@ -1,6 +1,7 @@
 package controller;
 
 import model.draw.Shape;
+import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
@@ -15,27 +16,36 @@ public class Group {
     int maxY = 0;
     int addPW = 0;
     int minPH = 0;
-    PaintCanvasBase paintCanvas;
+
+    private PaintCanvasBase paintCanvas;
+    private ApplicationState appState;
 
 
-    public void group(PaintCanvasBase paintCanvas) {
+    shapeUtility su = new shapeUtility();
+
+
+    public void group(PaintCanvasBase paintCanvas, ApplicationState applicationState) {
+
+        mouseHandler callMouse = new mouseHandler(paintCanvas, applicationState);
+
         for (Shape sa : shapeArray) {
-            if (sa.getIsSelected() == true) {
+            if (sa.getIsSelected() == true || sa.getIsGroup() == true) {
+                sa.setIsSelected(false);
                 sa.setIsGroup(true);
-                getGroupLines(paintCanvas);
+                sa.setIsMoved(false);
             }
         }
+
+        getGroupLines(paintCanvas, callMouse);
+
     }
 
 
-    public void getGroupLines(PaintCanvasBase paintCanvas){
+    public void getGroupLines(PaintCanvasBase paintCanvas, mouseHandler cMouse){
         for (Shape sa : shapeArray) {
             if (sa.getIsGroup() == true) {
 
-
-                if (sa.getIsSelected() == true) {
-                    sa.setIsGroup(true);
-                    if (sa.getSelectSpace().getX() < minX) {
+                if (sa.getSelectSpace().getX() < minX) {
                         minX = (int) sa.getSelectSpace().getX();
                     }
 
@@ -57,16 +67,12 @@ public class Group {
                     if (sa.getSelectSpace().getHeight() > minPH) {
                         minPH = (int) sa.getSelectSpace().getHeight();
                     }
-                }
             }
-
-            drawDashedLine(minX, maxX, minY, maxY, addPW, minPH, paintCanvas);
         }
 
-
-}
-
-
+        drawDashedLine(minX, maxX, minY, maxY, addPW, minPH, paintCanvas);
+        System.out.println(shapeArray);
+    }
 
 
 

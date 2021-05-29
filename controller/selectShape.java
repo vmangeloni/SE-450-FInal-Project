@@ -45,13 +45,16 @@ public class selectShape {
             if(s.getSelectSpace().intersects(selectShapes) || s.getIsMoved() == true){
                 if (s.getIsDeleted() == false) {
                     s.setIsSelected(true);
-                    drawDashedLine(s, Color.BLACK);
+
+                    if(s.getIsGroup() == false){
+                        drawDashedLine(s, Color.BLACK);
+                        System.out.println("HERE");}
                     s.setIsMoved(false);
+
                 }
             }
             else{
                 s.setIsSelected(false);
-                drawDashedLine(s, Color.WHITE);
                 }
             }
 

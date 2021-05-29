@@ -1,5 +1,7 @@
 package model.draw;
 
+import controller.createShape;
+import controller.shapeUtility;
 import model.ShapeColor;
 import model.ShapeType;
 import model.ShapeShadingType;
@@ -7,6 +9,8 @@ import model.interfaces.IShapeBuilder;
 import view.interfaces.PaintCanvasBase;
 
 //import static controller.createShape.shapeArray;
+import static controller.createShape.shapeArray;
+import static controller.shapeUtility.undoArray;
 import static model.ShapeColor.returnColor;
 
 import java.awt.*;
@@ -15,47 +19,36 @@ public class ellipse {
 
     private Rectangle selectSpace;
 
-    public ellipse(IShapeBuilder newShape) {
+    public ellipse(createShape CS) {
 
+        IShapeBuilder newShape = new shapeConstructor(CS);
         ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
         shapeBuilder.makeShape();
         Shape nwSPE = shapeBuilder.getShape();
 
+        shapeUtility su = new shapeUtility();
+        su.shapeUtility(nwSPE.getX1(), nwSPE.getX2(), nwSPE.getY1(), nwSPE.getY2());
 
-        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE) {
-            drawOutlineEllipse(nwSPE, nwSPE.getPrimaryColor()); }
+        nwSPE.setX1(su.getX1Utility());
+        nwSPE.setY1(su.getY1Utility());
+        nwSPE.setX2(su.getX2Utility());
+        nwSPE.setY2(su.getY2Utility());
+        nwSPE.setPW(su.getPWUtility());
+        nwSPE.setPH(su.getPHUtility());
 
-        if(nwSPE.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
-            drawFilledEllipse(nwSPE, nwSPE.getPrimaryColor()); }
+        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), nwSPE.getPW(), nwSPE.getPH());
+        nwSPE.setSelectSpace(selectSpace);
 
-        if(nwSPE.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
-            drawFilledEllipse(nwSPE, nwSPE.getPrimaryColor());
-            drawOutlineEllipse(nwSPE, nwSPE.getSecondaryColor());}
+        su.draw(nwSPE);
+        addShape(nwSPE);
     }
 
-    public void drawOutlineEllipse(Shape nwSPE, ShapeColor color) {
+    public void addShape(Shape nwSPE) {
+        shapeArray.add(nwSPE);
 
-        int pw = nwSPE.getX2() - nwSPE.getX1();
-        int ph = nwSPE.getY2() - nwSPE.getY1();
+        if(!undoArray.contains(nwSPE)){
+            undoArray.add(0, nwSPE);}
 
-        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
-
-        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
-        graphics2D.setColor(returnColor(color));
-        graphics2D.drawOval(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
-    }
-
-    public void drawFilledEllipse(Shape nwSPE, ShapeColor color) {
-
-        int pw = nwSPE.getX2() - nwSPE.getX1();
-        int ph = nwSPE.getY2() - nwSPE.getY1();
-
-        selectSpace = new Rectangle(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
-
-
-        Graphics2D graphics2D = nwSPE.getPaintCanvasBase().getGraphics2D();
-        graphics2D.setColor(returnColor(color));
-        graphics2D.fillOval(nwSPE.getX1(), nwSPE.getY1(), pw, ph);
     }
 }
 

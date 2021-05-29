@@ -31,7 +31,7 @@ public class moveShape {
     public moveShape(mouseHandler callMouse, createShape CS) {
 
         for (Shape sa : shapeArray) {
-            if (sa.getIsSelected() == true) {
+            if (sa.getIsSelected() == true || sa.getIsGroup() == true) {
                 MoveShapeArray.add(sa);
                 if (sa.getX1() > maxX){
                     maxX = sa.getX1();
@@ -70,13 +70,21 @@ public class moveShape {
                 newShape.setPW(s.getPW());
                 newShape.setPH(s.getPH());
                 newShape.setX2(s.getX2());
-                newShape.setIsSelected(true);
                 newShape.setX1(newX);
                 newShape.setY1(newY);
                 newShape.setSelectSpace(new Rectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH()));
                 newShape.setIsMoved(true);
-                newShape.setIsGroup(s.getIsGroup());
 
+                if(s.getIsGroup() == false){
+                    newShape.setIsSelected(true);
+                }
+                else{
+                    newShape.setIsGroup(true);
+                }
+
+                System.out.println("--------BREAK---------------");
+                System.out.println(newShape.getIsSelected());
+                System.out.println(newShape.getIsGroup());
 
                 StatusGrabber statusGrabber = new StatusGrabber();
                 StatusObserver observer1 = new StatusObserver(statusGrabber);
@@ -86,13 +94,13 @@ public class moveShape {
                 shapeArray.add(newShape);
 
                 su.clearCanvas(s.getPaintCanvasBase());
-
-
             }
         }
 
+
         new selectShape(callMouse);
-        gp.getGroupLines(callMouse.getPaintCanvas());
+        gp.getGroupLines(callMouse.getPaintCanvas(), callMouse);
+
 
         for (Shape sa : shapeArray){
             su.draw(sa);
@@ -100,6 +108,16 @@ public class moveShape {
             if(!undoArray.contains(sa)){
                 undoArray.add(sa);}
         }
+
+
+        /*
+        for (Shape sa : shapeArray) {
+            System.out.println(sa);
+        }
+
+         */
+
+
 
 
 
