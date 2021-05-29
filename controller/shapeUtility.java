@@ -25,7 +25,6 @@ public class shapeUtility implements ICommand, IUndoable{
 
     public static ArrayList<Shape> undoArray = new ArrayList();
 
-
     public void shapeUtility(int X1, int X2, int Y1, int Y2) {
         this.setX1 = getShapeRecCoord(X1, X2, Y1, Y2)[0];
         this.setY1 = getShapeRecCoord(X1, X2, Y1, Y2)[1];
@@ -109,19 +108,7 @@ public class shapeUtility implements ICommand, IUndoable{
                 }
 
         }
-
-
-
-
-
-
     }
-
-
-
-
-
-
 
     public void drawOutlineRectangle(int X1, int Y1, int pw, int ph, PaintCanvasBase paintCanvasBase, ShapeColor color) {
 
@@ -148,17 +135,18 @@ public class shapeUtility implements ICommand, IUndoable{
     @Override
     public void execute() throws IOException {
         CommandHistory.add(this);
-        System.out.println("UNDO!");
+        System.out.println("EXECUTE!!!");
     }
 
     @Override
     public void undo() {
-        System.out.println("UNDO!");
+        System.out.println("UNDO!!!");
 
     }
 
     @Override
     public void redo() {
+        System.out.println("REDO!!!");
 
     }
 }

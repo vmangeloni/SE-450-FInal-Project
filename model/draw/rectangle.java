@@ -16,7 +16,6 @@ import java.awt.*;
 
 import static controller.createShape.shapeArray;
 import static controller.shapeUtility.undoArray;
-import static model.ShapeColor.returnColor;
 
 
 public class rectangle  {
@@ -49,8 +48,14 @@ public class rectangle  {
 
     public void addShape(Shape nwSPE) {
         shapeArray.add(nwSPE);
-        undoArray.add(0, nwSPE);
 
+        if(!undoArray.contains(nwSPE)){
+            undoArray.add(0, nwSPE);}
+
+        /*
+        System.out.println("--------------DRAW---------------");
+        System.out.println("SHAPE "+ shapeArray);
+        System.out.println("UNDO " + undoArray); */
     }
 
 

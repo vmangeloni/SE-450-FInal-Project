@@ -26,6 +26,7 @@ public class Shape implements IShapePlan {
     private boolean isSelect;
     private boolean isDeleted;
     private boolean isMoved;
+    private boolean isGroup;
 
     @Override
     public void setShapeType(ShapeType setShapeType) { shapeType = setShapeType; }
@@ -113,6 +114,13 @@ public class Shape implements IShapePlan {
     }
 
     public boolean getIsDeleted() {return isDeleted;}
+
+    @Override
+    public void setIsGroup(boolean isGroup) {
+        this.isGroup = isGroup;
+    }
+
+    public boolean getIsGroup() {return isGroup;}
 
     public int getPH() { return ph;}
 

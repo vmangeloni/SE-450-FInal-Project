@@ -38,5 +38,7 @@ public interface IShapePlan {
 
     public void setPH(int ph);
 
+    public void setIsGroup(boolean isGroup);
+
     public void setIsDeleted(boolean isDeleted);
 }

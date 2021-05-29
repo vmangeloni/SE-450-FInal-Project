@@ -22,6 +22,7 @@ public class moveShape {
     public static ArrayList<Shape> MoveShapeArray = new ArrayList();
 
     shapeUtility su = new shapeUtility();
+    Group gp = new Group();
 
     Shape S;
     int maxX = 0;
@@ -44,7 +45,7 @@ public class moveShape {
 
 
         for (Shape s: MoveShapeArray) {
-            if (s.getIsSelected() == true) {
+            if (s.getIsSelected() == true || s.getIsGroup() == true) {
 
                 IShapeBuilder shapeBuilderShape = new shapeConstructor(CS);
                 ShapeBuilder shapeBuilder = new ShapeBuilder(shapeBuilderShape);
@@ -74,6 +75,7 @@ public class moveShape {
                 newShape.setY1(newY);
                 newShape.setSelectSpace(new Rectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH()));
                 newShape.setIsMoved(true);
+                newShape.setIsGroup(s.getIsGroup());
 
 
                 StatusGrabber statusGrabber = new StatusGrabber();
@@ -84,15 +86,31 @@ public class moveShape {
                 shapeArray.add(newShape);
 
                 su.clearCanvas(s.getPaintCanvasBase());
-                undoArray.add(0, newShape);
+
 
             }
         }
 
         new selectShape(callMouse);
+        gp.getGroupLines(callMouse.getPaintCanvas());
+
         for (Shape sa : shapeArray){
             su.draw(sa);
+
+            if(!undoArray.contains(sa)){
+                undoArray.add(sa);}
         }
+
+
+
+
+
+
+
+
+        //System.out.println("--------------MOVE---------------");
+        //System.out.println("SHAPE "+ shapeArray);
+        //System.out.println("UNDO " + undoArray);
 
 
 

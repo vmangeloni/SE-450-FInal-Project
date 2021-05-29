@@ -39,4 +39,5 @@ public interface IShapeBuilder {
     public Shape getShape();
 
 
+    public void buildIsGroup();
 }

@@ -30,6 +30,7 @@ public class ShapeBuilder {
         this.ishapeBuilder.buildPH();
         this.ishapeBuilder.buildIsMoved();
         this.ishapeBuilder.buildIsDeleted();
+        this.ishapeBuilder.buildIsGroup();
     }
 
 
