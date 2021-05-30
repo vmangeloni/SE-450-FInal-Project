@@ -113,6 +113,19 @@ public class Shape implements IShapePlan {
         this.isDeleted = isDeleted;
     }
 
+    @Override
+    public Shape makeCopy() {
+        Shape shapeObject = null;
+
+        try {
+            shapeObject = (Shape) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+        return shapeObject;
+    }
+
     public boolean getIsDeleted() {return isDeleted;}
 
     @Override

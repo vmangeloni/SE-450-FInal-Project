@@ -1,21 +1,14 @@
 package controller;
 
-import model.MouseMode;
-import model.ShapeColor;
-import model.ShapeShadingType;
+
 import model.draw.*;
 import model.draw.Shape;
-import model.interfaces.IShapeBuilder;
-import model.ShapeType;
-import model.persistence.ApplicationState;
-import view.interfaces.PaintCanvasBase;
-
 import java.awt.*;
 import java.util.ArrayList;
 
 import static controller.createShape.shapeArray;
 import static controller.shapeUtility.undoArray;
-import static model.ShapeColor.returnColor;
+
 
 public class moveShape {
 
@@ -42,15 +35,12 @@ public class moveShape {
             }
         }
 
-
-
         for (Shape s: MoveShapeArray) {
             if (s.getIsSelected() == true || s.getIsGroup() == true) {
+                System.out.println(s);
 
-                IShapeBuilder shapeBuilderShape = new shapeConstructor(CS);
-                ShapeBuilder shapeBuilder = new ShapeBuilder(shapeBuilderShape);
-                shapeBuilder.makeShape();
-                Shape newShape = shapeBuilder.getShape();
+                CloneFactory shapeMaker = new CloneFactory();
+                Shape newShape = (Shape) shapeMaker.getClone(s);
 
                 int DiffX = callMouse.getMouseX() - s.getX1();
                 int DiffY = callMouse.getMouseY() - s.getY1();
@@ -60,16 +50,6 @@ public class moveShape {
                 int newX = s.getX1() + DiffX + additionalX;
                 int newY = s.getY1() + DiffY + additionalY;
 
-                newShape.setPaintCanvasBase(s.getPaintCanvasBase());
-                newShape.setShapeShadingType(s.getShapeShadingType());
-                newShape.setPrimaryColor(s.getPrimaryColor());
-                newShape.setSecondaryColor(s.getSecondaryColor());
-                newShape.setShapeType(s.getShapeType());
-                newShape.setX2(s.getX2());
-                newShape.setY2(s.getY2());
-                newShape.setPW(s.getPW());
-                newShape.setPH(s.getPH());
-                newShape.setX2(s.getX2());
                 newShape.setX1(newX);
                 newShape.setY1(newY);
                 newShape.setSelectSpace(new Rectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH()));
@@ -97,10 +77,8 @@ public class moveShape {
             }
         }
 
-
         new selectShape(callMouse);
         gp.getGroupLines(callMouse.getPaintCanvas(), callMouse);
-
 
         for (Shape sa : shapeArray){
             su.draw(sa);
@@ -108,6 +86,8 @@ public class moveShape {
             if(!undoArray.contains(sa)){
                 undoArray.add(sa);}
         }
+
+
 
 
         /*

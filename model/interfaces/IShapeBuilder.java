@@ -4,7 +4,7 @@ import model.draw.Shape;
 
 import java.awt.*;
 
-public interface IShapeBuilder {
+public interface IShapeBuilder extends Cloneable {
 
     public void buildShapeType();
 
@@ -38,6 +38,7 @@ public interface IShapeBuilder {
 
     public Shape getShape();
 
+    public Shape makeCopy();
 
     public void buildIsGroup();
 }

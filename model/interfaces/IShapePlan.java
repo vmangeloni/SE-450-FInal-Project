@@ -3,12 +3,13 @@ package model.interfaces;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
+import model.draw.Shape;
 import model.draw.rectangle;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-public interface IShapePlan {
+public interface IShapePlan extends Cloneable {
 
     public void setShapeType(ShapeType setShapeType);
 
@@ -41,4 +42,6 @@ public interface IShapePlan {
     public void setIsGroup(boolean isGroup);
 
     public void setIsDeleted(boolean isDeleted);
+
+    public Shape makeCopy();
 }

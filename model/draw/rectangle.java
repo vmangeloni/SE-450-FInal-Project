@@ -1,15 +1,9 @@
 package model.draw;
 
 //import controller.CommandHistory;
-import controller.CommandHistory;
-import controller.ICommand;
 import controller.createShape;
 import controller.shapeUtility;
 import model.interfaces.IShapeBuilder;
-
-import model.ShapeColor;
-import model.ShapeShadingType;
-import view.interfaces.PaintCanvasBase;
 
 
 import java.awt.*;
@@ -18,7 +12,7 @@ import static controller.createShape.shapeArray;
 import static controller.shapeUtility.undoArray;
 
 
-public class rectangle  {
+public class rectangle {
 
     private Rectangle selectSpace;
 
@@ -60,8 +54,5 @@ public class rectangle  {
 
 
     }
-
-
-
 
 }

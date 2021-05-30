@@ -31,15 +31,9 @@ public class Ungroup {
 
         su.clearCanvas(paintCanvas);
 
-
         for (Shape sa : shapeArray){
             su.draw(sa);}
         new selectShape(callMouse);
-
-
-
-
-
 
     }
 }

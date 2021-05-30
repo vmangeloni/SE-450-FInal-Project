@@ -13,6 +13,7 @@ import view.interfaces.PaintCanvasBase;
 public class shapeConstructor implements IShapeBuilder {
 
     private Shape shape;
+    private Shape shapeObject;
     private PaintCanvasBase paintCanvas;
     private ApplicationState appState;
     private ShapeType shapeType;
@@ -28,8 +29,7 @@ public class shapeConstructor implements IShapeBuilder {
     private int pw;
 
 
-
-    public shapeConstructor(createShape cs){
+    public shapeConstructor(createShape cs) {
         this.shape = new Shape();
         this.paintCanvas = cs.getPaintCanvasMaster();
         this.shapeType = cs.getShapeTypeMaster();
@@ -137,6 +137,11 @@ public class shapeConstructor implements IShapeBuilder {
 
     @Override
     public Shape getShape() {
+        return this.shape;
+    }
+
+    @Override
+    public Shape makeCopy() {
         return this.shape;
     }
 }

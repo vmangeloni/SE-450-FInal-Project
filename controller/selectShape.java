@@ -47,8 +47,7 @@ public class selectShape {
                     s.setIsSelected(true);
 
                     if(s.getIsGroup() == false){
-                        drawDashedLine(s, Color.BLACK);
-                        System.out.println("HERE");}
+                        drawDashedLine(s, Color.BLACK);}
                     s.setIsMoved(false);
 
                 }
