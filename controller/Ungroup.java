@@ -1,11 +1,9 @@
 package controller;
 
 import model.draw.Shape;
+import model.draw.ShapeHolder;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
-
-import static controller.createShape.shapeArray;
-
 
 
 
@@ -19,9 +17,10 @@ public class Ungroup {
 
         shapeUtility su = new shapeUtility();
         mouseHandler callMouse = new mouseHandler(paintCanvas, appState);
+        ShapeHolder SAL = ShapeHolder.getInstance();
 
 
-        for (Shape sa : shapeArray) {
+        for (Shape sa : SAL.getSA()) {
             if(sa.getIsGroup() == true){
                 sa.setIsSelected(true);
                 sa.setIsGroup(false);
@@ -31,7 +30,7 @@ public class Ungroup {
 
         su.clearCanvas(paintCanvas);
 
-        for (Shape sa : shapeArray){
+        for (Shape sa : SAL.getSA()){
             su.draw(sa);}
         new selectShape(callMouse);
 

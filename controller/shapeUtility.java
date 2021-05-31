@@ -10,7 +10,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 import static model.ShapeColor.WHITE;
 import static model.ShapeColor.returnColor;
 
@@ -93,6 +93,7 @@ public class shapeUtility implements ICommand, IUndoable{
             if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
                 drawOutlineRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
                         newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+                System.out.println(newShape.getSecondaryColor());
             }
 
             if(newShape.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
@@ -103,8 +104,9 @@ public class shapeUtility implements ICommand, IUndoable{
             if(newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
                 drawFilledRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
                         newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                drawOutlineRectangle(newShape.getX1(), newShape.getX2(), newShape.getPW(), newShape.getPH(),
+                drawOutlineRectangle(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
                         newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
+                System.out.println(newShape.getSecondaryColor());
                 }
 
         }
@@ -121,11 +123,29 @@ public class shapeUtility implements ICommand, IUndoable{
             if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
                 drawFilledEllipse(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
                         newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
-                drawOutlineEllipse(newShape.getX1(), newShape.getX2(), newShape.getPW(), newShape.getPH(),
+                drawOutlineEllipse(newShape.getX1(), newShape.getY1(), newShape.getPW(), newShape.getPH(),
                         newShape.getPaintCanvasBase(), newShape.getSecondaryColor());
             }
-
         }
+
+        if (newShape.getShapeType() == ShapeType.TRIANGLE){
+            if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE) {
+                drawOutlineTriangle(newShape.getX1(), newShape.getY1(), newShape.getX2(), newShape.getY2(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+            }
+            if (newShape.getShapeShadingType() == ShapeShadingType.FILLED_IN) {
+                drawFilledTriangle(newShape.getX1(), newShape.getY1(), newShape.getX2(), newShape.getY2(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+            }
+            if (newShape.getShapeShadingType() == ShapeShadingType.OUTLINE_AND_FILLED_IN) {
+                drawFilledTriangle(newShape.getX1(), newShape.getY1(), newShape.getX2(), newShape.getY2(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+                drawOutlineTriangle(newShape.getX1(), newShape.getY1(), newShape.getX2(), newShape.getY2(),
+                        newShape.getPaintCanvasBase(), newShape.getPrimaryColor());
+            }
+        }
+
+
     }
 
     public void drawOutlineRectangle(int X1, int Y1, int pw, int ph, PaintCanvasBase paintCanvasBase, ShapeColor color) {
@@ -156,10 +176,31 @@ public class shapeUtility implements ICommand, IUndoable{
         graphics2D.fillOval(X1, Y1, pw, ph);
     }
 
+    public void drawFilledTriangle(int X1, int Y1, int X2, int Y2, PaintCanvasBase paintCanvasBase, ShapeColor color) {
 
+        int [] triX = new int[] {X2, X1, X1};
+        int [] triY = new int[] {Y2, Y1, Y1};
 
+        int[] drawX = new int[] {triX[0] + 13, triX[1] - 7, triX[2] - 7};
+        int[] drawY = new int[] {triY[0] + 3, triY[1] + 4, triY[2] - 9};
 
+        Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.fillPolygon(drawX, drawY, 3);
+    }
 
+    public void drawOutlineTriangle(int X1, int Y1, int X2, int Y2, PaintCanvasBase paintCanvasBase, ShapeColor color) {
+
+        int [] triX = new int[] {X2, X1, X1};
+        int [] triY = new int[] {Y2, Y1, Y1};
+
+        int[] drawX = new int[] {triX[0] + 13, triX[1] - 7, triX[2] - 7};
+        int[] drawY = new int[] {triY[0] + 3, triY[1] + 4, triY[2] - 9};
+
+        Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
+        graphics2D.setColor(returnColor(color));
+        graphics2D.drawPolygon(drawX, drawY, 3);
+    }
 
 
     public void clearCanvas(PaintCanvasBase paintCanvasBase){

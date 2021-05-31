@@ -1,12 +1,14 @@
 package controller;
 
 import model.draw.Shape;
+import model.draw.ShapeHolder;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
+
 
 public class Group {
 
@@ -22,13 +24,14 @@ public class Group {
 
 
     shapeUtility su = new shapeUtility();
+    ShapeHolder SAL = ShapeHolder.getInstance();
 
 
     public void group(PaintCanvasBase paintCanvas, ApplicationState applicationState) {
 
         mouseHandler callMouse = new mouseHandler(paintCanvas, applicationState);
 
-        for (Shape sa : shapeArray) {
+        for (Shape sa : SAL.getSA()) {
             if (sa.getIsSelected() == true || sa.getIsGroup() == true) {
                 sa.setIsSelected(false);
                 sa.setIsGroup(true);
@@ -42,7 +45,7 @@ public class Group {
 
 
     public void getGroupLines(PaintCanvasBase paintCanvas, mouseHandler cMouse){
-        for (Shape sa : shapeArray) {
+        for (Shape sa : SAL.getSA()) {
             if (sa.getIsGroup() == true) {
 
                 if (sa.getSelectSpace().getX() < minX) {
@@ -71,7 +74,6 @@ public class Group {
         }
 
         drawDashedLine(minX, maxX, minY, maxY, addPW, minPH, paintCanvas);
-        System.out.println(shapeArray);
     }
 
 

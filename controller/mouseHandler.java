@@ -33,9 +33,6 @@ public class mouseHandler implements MouseListener {
         this.appState = appState;
     }
 
-
-
-
     @Override
     public void mousePressed(MouseEvent e) {
         this.mouseX = e.getX();

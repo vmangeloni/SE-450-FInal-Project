@@ -8,15 +8,16 @@ import model.interfaces.IShapeBuilder;
 
 import java.awt.*;
 
-import static controller.createShape.shapeArray;
-import static controller.shapeUtility.undoArray;
+//import static controller.createShape.shapeArray;
 
 
-public class rectangle {
+
+public class shapeSketch {
 
     private Rectangle selectSpace;
+    ShapeHolder SAL = ShapeHolder.getInstance();
 
-    public rectangle(createShape CS) {
+    public shapeSketch(createShape CS) {
 
         IShapeBuilder newShape = new shapeConstructor(CS);
         ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
@@ -37,22 +38,10 @@ public class rectangle {
         nwSPE.setSelectSpace(selectSpace);
 
         su.draw(nwSPE);
-        addShape(nwSPE);
+        addShape(nwSPE); }
 
-        //System.out.println("---------------DRAW---------");
-        //System.out.println(shapeArray);
-        }
-
-
-
-
-    public void addShape(Shape nwSPE) {
-        shapeArray.add(nwSPE);
-
-        if(!undoArray.contains(nwSPE)){
-            undoArray.add(0, nwSPE);}
-
+        public void addShape(Shape nwSPE) {
+            SAL.addSA(nwSPE);}
 
     }
 
-}

@@ -1,10 +1,11 @@
 package controller;
 
 import model.draw.Shape;
+import model.draw.ShapeHolder;
 
 import java.awt.*;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 
 
 
@@ -30,6 +31,7 @@ public class selectShape {
 
         shapeUtility su = new shapeUtility();
         su.shapeUtility(selectX, selectX2, selectY, selectY2);
+        ShapeHolder SAL = ShapeHolder.getInstance();
 
         selectX = su.getX1Utility();
         selectY = su.getY1Utility();
@@ -41,7 +43,7 @@ public class selectShape {
         selectShapes = new Rectangle(selectX, selectY, selectPW + 1, selectPH + 1);
 
 
-        for (Shape s: shapeArray){
+        for (Shape s: SAL.getSA()){
             if(s.getSelectSpace().intersects(selectShapes) || s.getIsMoved() == true){
                 if (s.getIsDeleted() == false) {
                     s.setIsSelected(true);
@@ -54,6 +56,7 @@ public class selectShape {
             }
             else{
                 s.setIsSelected(false);
+                drawDashedLine(s, Color.WHITE);
                 }
             }
 

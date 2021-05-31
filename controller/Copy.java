@@ -2,6 +2,7 @@ package controller;
 
 import model.draw.Shape;
 import model.draw.ShapeBuilder;
+import model.draw.ShapeHolder;
 import model.draw.shapeConstructor;
 import model.interfaces.IShapeBuilder;
 import model.persistence.ApplicationState;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 import java.awt.*;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 
 
 
@@ -21,10 +22,11 @@ public class Copy {
     private ApplicationState appState;
 
     public static ArrayList<Shape> copyArray = new ArrayList();
+    ShapeHolder SAL = ShapeHolder.getInstance();
 
     public void copy(PaintCanvasBase paintCanvas, ApplicationState appState) {
 
-        for (Shape s : shapeArray) {
+        for (Shape s : SAL.getSA()) {
             if (s.getIsSelected() == true) {
 
                 mouseHandler callMouse = new mouseHandler(paintCanvas, appState);

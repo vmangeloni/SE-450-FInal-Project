@@ -5,8 +5,7 @@ import view.interfaces.PaintCanvasBase;
 
 
 
-import static controller.createShape.shapeArray;
-import static controller.shapeUtility.undoArray;
+//import static controller.createShape.shapeArray;
 
 
 public class Undo implements ICommand {
@@ -15,13 +14,16 @@ public class Undo implements ICommand {
     private final PaintCanvasBase paintCanvas;
     shapeUtility su = new shapeUtility();
 
+
+
     public Undo(PaintCanvasBase paintCanvas) { this.paintCanvas = paintCanvas;}
 
 
     @Override
     public void execute() {
 
-        int shapeArraySize = shapeArray.size() - 1;
+
+        /*int shapeArraySize = shapeArray.size() - 1;
 
         if (!undoArray.get(0).equals(shapeArray.get(shapeArraySize))){
             shapeArray.add(undoArray.get(0));
@@ -32,12 +34,14 @@ public class Undo implements ICommand {
             undoArray.add(undoArray.remove(0));
         }
 
+         */
+
 
         //-----------------------------------------
-        su.clearCanvas(paintCanvas);
+        //su.clearCanvas(paintCanvas);
 
-        for (Shape sa : shapeArray) {
-            su.draw(sa);}
+        //for (Shape sa : shapeArray) {
+            //su.draw(sa);}
 
         /*
         System.out.println("--------------UNDO---------------");

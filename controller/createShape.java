@@ -1,9 +1,6 @@
 package controller;
 
-import model.MouseMode;
-import model.ShapeColor;
-import model.ShapeShadingType;
-import model.ShapeType;
+import model.*;
 import model.draw.*;
 import model.draw.Shape;
 import model.interfaces.IShapeBuilder;
@@ -15,7 +12,7 @@ import java.util.ArrayList;
 
 public class createShape {
 
-    public static ArrayList<Shape> shapeArray = new ArrayList();
+    //public static ArrayList<Shape> shapeArray = new ArrayList();
 
 
     private PaintCanvasBase paintCanvas;
@@ -45,54 +42,24 @@ public class createShape {
         this.Y2 = callMouse.getMouseY2();
 
 
-        IShapeBuilder newShape = new shapeConstructor(this);
-
-        /*
-        ShapeBuilder shapeBuilder = new ShapeBuilder(newShape);
-        shapeBuilder.makeShape();
-        Shape nwSHAPE = shapeBuilder.getShape();
-        */
-
-
-        if (shapeType == shapeType.RECTANGLE & this.mode == mode.DRAW){
-            new rectangle(this);
+        if (this.mode == mode.DRAW){
+            new shapeSketch(this);
         }
-
-
-        if (shapeType == shapeType.ELLIPSE & this.mode == mode.DRAW){
-            new ellipse(this);
-        }
-
-        /*
-        if (shapeType == shapeType.TRIANGLE & this.mode == mode.DRAW){
-            new triangle(newShape);
-        }
-        */
-
-
-
 
         if (this.mode == mode.MOVE){
             new moveShape(callMouse, this);
         }
 
-
-
-
     }
     public PaintCanvasBase getPaintCanvasMaster() {return paintCanvas;}
     public ShapeType getShapeTypeMaster() {return shapeType;}
     public ShapeColor getPrimaryColorMaster() {return primaryColor;}
-    public ShapeColor getSecondaryColorMaster() {return primaryColor;}
+    public ShapeColor getSecondaryColorMaster() {return secondaryColor;}
     public ShapeShadingType getShadeTypeMaster() {return shadeType;}
     public int getX1Master() {return X1;}
     public int getX2Master() {return X2;}
     public int getY1Master() {return Y1;}
     public int getY2Master() {return Y2;}
-
-
-
-
 
 }
 

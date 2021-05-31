@@ -6,7 +6,7 @@ import model.draw.Shape;
 import java.awt.*;
 import java.util.ArrayList;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 import static controller.shapeUtility.undoArray;
 
 
@@ -14,6 +14,7 @@ public class moveShape {
 
     public static ArrayList<Shape> MoveShapeArray = new ArrayList();
 
+    ShapeHolder SAL = ShapeHolder.getInstance();
     shapeUtility su = new shapeUtility();
     Group gp = new Group();
 
@@ -23,7 +24,7 @@ public class moveShape {
 
     public moveShape(mouseHandler callMouse, createShape CS) {
 
-        for (Shape sa : shapeArray) {
+        for (Shape sa : SAL.getSA()) {
             if (sa.getIsSelected() == true || sa.getIsGroup() == true) {
                 MoveShapeArray.add(sa);
                 if (sa.getX1() > maxX){
@@ -62,16 +63,12 @@ public class moveShape {
                     newShape.setIsGroup(true);
                 }
 
-                System.out.println("--------BREAK---------------");
-                System.out.println(newShape.getIsSelected());
-                System.out.println(newShape.getIsGroup());
-
                 StatusGrabber statusGrabber = new StatusGrabber();
                 StatusObserver observer1 = new StatusObserver(statusGrabber);
                 statusGrabber.setIsDeletedObserver(s, true);
 
-                shapeArray.remove(s);
-                shapeArray.add(newShape);
+                SAL.getSA().remove(s);
+                SAL.addSA(newShape);
 
                 su.clearCanvas(s.getPaintCanvasBase());
             }
@@ -80,40 +77,12 @@ public class moveShape {
         new selectShape(callMouse);
         gp.getGroupLines(callMouse.getPaintCanvas(), callMouse);
 
-        for (Shape sa : shapeArray){
+        for (Shape sa : SAL.getSA()){
             su.draw(sa);
 
             if(!undoArray.contains(sa)){
                 undoArray.add(sa);}
         }
-
-
-
-
-        /*
-        for (Shape sa : shapeArray) {
-            System.out.println(sa);
-        }
-
-         */
-
-
-
-
-
-
-
-
-
-
-        //System.out.println("--------------MOVE---------------");
-        //System.out.println("SHAPE "+ shapeArray);
-        //System.out.println("UNDO " + undoArray);
-
-
-
-
-
     }
 
 }

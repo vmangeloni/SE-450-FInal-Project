@@ -3,7 +3,7 @@ package controller;
 import model.draw.Shape;
 import view.interfaces.PaintCanvasBase;
 
-import static controller.createShape.shapeArray;
+//import static controller.createShape.shapeArray;
 import static controller.shapeUtility.undoArray;
 
 import java.io.IOException;
@@ -22,6 +22,7 @@ public class Redo implements ICommand{
     public void execute()  {
         CommandHistory.redo();
 
+        /*
         int undoSize = undoArray.size() - 1;
         int shapeSize = shapeArray.size() - 1;
 

@@ -4,7 +4,7 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.draw.Shape;
-import model.draw.rectangle;
+import model.draw.shapeSketch;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
