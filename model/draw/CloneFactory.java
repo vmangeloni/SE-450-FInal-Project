@@ -1,6 +1,6 @@
 package model.draw;
 
-import model.interfaces.IShapeBuilder;
+
 import model.interfaces.IShapePlan;
 
 

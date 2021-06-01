@@ -2,18 +2,12 @@ package controller;
 
 import model.*;
 import model.draw.*;
-import model.draw.Shape;
-import model.interfaces.IShapeBuilder;
 import model.persistence.ApplicationState;
 import view.interfaces.PaintCanvasBase;
-import java.util.ArrayList;
 
 
 
 public class createShape {
-
-    //public static ArrayList<Shape> shapeArray = new ArrayList();
-
 
     private PaintCanvasBase paintCanvas;
     private ApplicationState appState;

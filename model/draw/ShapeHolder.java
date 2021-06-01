@@ -20,8 +20,16 @@ public class ShapeHolder {
         ShapeArrayList.add(shape);
     }
 
+    public void removeSA (Shape shape){
+        ShapeArrayList.remove(shape);
+    }
+
     public ArrayList<Shape> getSA (){
         return firstInstance.ShapeArrayList;
+    }
+
+    public Shape getSAINDEX (int indexget){
+        return firstInstance.ShapeArrayList.get(indexget);
     }
 
 }

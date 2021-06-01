@@ -8,8 +8,7 @@ import model.interfaces.IShapeBuilder;
 
 import java.awt.*;
 
-//import static controller.createShape.shapeArray;
-
+import static controller.shapeUtility.undoArray;
 
 
 public class shapeSketch {
@@ -38,10 +37,14 @@ public class shapeSketch {
         nwSPE.setSelectSpace(selectSpace);
 
         su.draw(nwSPE);
-        addShape(nwSPE); }
+        addShape(nwSPE);
+
+
+    }
 
         public void addShape(Shape nwSPE) {
-            SAL.addSA(nwSPE);}
+            SAL.addSA(nwSPE);
+            undoArray.add(0, nwSPE);}
 
     }
 

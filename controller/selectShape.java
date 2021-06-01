@@ -45,13 +45,13 @@ public class selectShape {
 
         for (Shape s: SAL.getSA()){
             if(s.getSelectSpace().intersects(selectShapes) || s.getIsMoved() == true){
+
                 if (s.getIsDeleted() == false) {
                     s.setIsSelected(true);
 
                     if(s.getIsGroup() == false){
                         drawDashedLine(s, Color.BLACK);}
                     s.setIsMoved(false);
-
                 }
             }
             else{

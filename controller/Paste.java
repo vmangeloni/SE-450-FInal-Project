@@ -1,11 +1,12 @@
 package controller;
 
-import model.ShapeShadingType;
+
 import model.draw.Shape;
 import model.draw.ShapeHolder;
 
 import static controller.Copy.copyArray;
-//import static controller.createShape.shapeArray;
+import static controller.shapeUtility.undoArray;
+
 
 
 public class Paste {
@@ -19,6 +20,7 @@ public class Paste {
         for(Shape newShape: copyArray){
             su.draw(newShape);
             SAL.addSA(newShape);
+            undoArray.add(0, newShape);
         }
     }
 }

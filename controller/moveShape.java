@@ -38,7 +38,6 @@ public class moveShape {
 
         for (Shape s: MoveShapeArray) {
             if (s.getIsSelected() == true || s.getIsGroup() == true) {
-                System.out.println(s);
 
                 CloneFactory shapeMaker = new CloneFactory();
                 Shape newShape = (Shape) shapeMaker.getClone(s);
@@ -74,8 +73,12 @@ public class moveShape {
             }
         }
 
+
+
+        su.drawGroupLines(SAL, callMouse.getPaintCanvas(), callMouse);
         new selectShape(callMouse);
-        gp.getGroupLines(callMouse.getPaintCanvas(), callMouse);
+
+
 
         for (Shape sa : SAL.getSA()){
             su.draw(sa);

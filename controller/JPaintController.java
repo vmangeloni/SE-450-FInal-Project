@@ -33,7 +33,7 @@ public class JPaintController implements IJPaintController {
         uiModule.addEvent(EventName.CHOOSE_MOUSE_MODE, () -> applicationState.setActiveStartAndEndPointMode());
         uiModule.addEvent(EventName.UNDO, () -> new Undo(paintCanvas).execute());
         uiModule.addEvent(EventName.REDO, () -> new Redo(paintCanvas).execute());
-        uiModule.addEvent(EventName.COPY, () -> new Copy().copy(paintCanvas, (ApplicationState) applicationState));
+        uiModule.addEvent(EventName.COPY, () -> new Copy().copy());
         uiModule.addEvent(EventName.PASTE, () -> new Paste().paste());
         uiModule.addEvent(EventName.DELETE, () -> new Delete().delete(paintCanvas));
         uiModule.addEvent(EventName.GROUP, () -> new Group().group(paintCanvas, (ApplicationState) applicationState));

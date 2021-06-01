@@ -33,9 +33,11 @@ public class Group {
 
         for (Shape sa : SAL.getSA()) {
             if (sa.getIsSelected() == true || sa.getIsGroup() == true) {
-                sa.setIsSelected(false);
+                sa.setIsSelected(true);
                 sa.setIsGroup(true);
                 sa.setIsMoved(false);
+
+
             }
         }
 
@@ -70,9 +72,11 @@ public class Group {
                     if (sa.getSelectSpace().getHeight() > minPH) {
                         minPH = (int) sa.getSelectSpace().getHeight();
                     }
+
+
             }
         }
-
+        new selectShape(cMouse);
         drawDashedLine(minX, maxX, minY, maxY, addPW, minPH, paintCanvas);
     }
 

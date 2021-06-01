@@ -4,13 +4,14 @@ import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
 import model.draw.Shape;
+import model.draw.ShapeHolder;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//import static controller.createShape.shapeArray;
+
 import static model.ShapeColor.WHITE;
 import static model.ShapeColor.returnColor;
 
@@ -22,6 +23,14 @@ public class shapeUtility implements ICommand, IUndoable{
     private int setY2;
     private int setPW;
     private int setPH;
+
+
+    int minX = 100000;
+    int minY = 100000;
+    int maxX = 0;
+    int maxY = 0;
+    int addPW = 0;
+    int minPH = 0;
 
     public static ArrayList<Shape> undoArray = new ArrayList();
 
@@ -179,10 +188,10 @@ public class shapeUtility implements ICommand, IUndoable{
     public void drawFilledTriangle(int X1, int Y1, int X2, int Y2, PaintCanvasBase paintCanvasBase, ShapeColor color) {
 
         int [] triX = new int[] {X2, X1, X1};
-        int [] triY = new int[] {Y2, Y1, Y1};
+        int [] triY = new int[] {Y2, Y2, Y1};
 
-        int[] drawX = new int[] {triX[0] + 13, triX[1] - 7, triX[2] - 7};
-        int[] drawY = new int[] {triY[0] + 3, triY[1] + 4, triY[2] - 9};
+        int[] drawX = new int[] {triX[0], triX[1], triX[2]};
+        int[] drawY = new int[] {triY[0], triY[1], triY[2]};
 
         Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
         graphics2D.setColor(returnColor(color));
@@ -194,8 +203,8 @@ public class shapeUtility implements ICommand, IUndoable{
         int [] triX = new int[] {X2, X1, X1};
         int [] triY = new int[] {Y2, Y1, Y1};
 
-        int[] drawX = new int[] {triX[0] + 13, triX[1] - 7, triX[2] - 7};
-        int[] drawY = new int[] {triY[0] + 3, triY[1] + 4, triY[2] - 9};
+        int[] drawX = new int[] {triX[0], triX[1], triX[2]};
+        int[] drawY = new int[] {triY[0], triY[1], triY[2]};
 
         Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
         graphics2D.setColor(returnColor(color));
@@ -207,27 +216,55 @@ public class shapeUtility implements ICommand, IUndoable{
         Graphics2D graphics2D = paintCanvasBase.getGraphics2D();
         graphics2D.setColor(returnColor(WHITE));
         graphics2D.fillRect(0, 0, paintCanvasBase.getWidth(), paintCanvasBase.getHeight());
-
-
     }
+
+
+    public void drawGroupLines(ShapeHolder SAL, PaintCanvasBase paintCanvas, mouseHandler cMouse) {
+        for (Shape sa : SAL.getSA()) {
+            if (sa.getIsGroup() == true) {
+
+                if (sa.getSelectSpace().getX() < minX) {
+                    minX = (int) sa.getSelectSpace().getX();
+                }
+
+                if (sa.getSelectSpace().getY() < minY) {
+                    minY = (int) sa.getSelectSpace().getY();
+                    minPH = (int) sa.getSelectSpace().getHeight();
+
+                }
+
+                if (sa.getSelectSpace().getX() > maxX) {
+                    maxX = (int) sa.getSelectSpace().getX();
+                    addPW = (int) sa.getSelectSpace().getWidth();
+                }
+
+                if (sa.getSelectSpace().getY() > maxY) {
+                    maxY = (int) sa.getSelectSpace().getY();
+                }
+
+                if (sa.getSelectSpace().getHeight() > minPH) {
+                    minPH = (int) sa.getSelectSpace().getHeight();
+                }
+
+            }
+        }
+
+        Graphics2D graphics2D = paintCanvas.getGraphics2D();
+        Stroke stroke = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 1, new float[]{9}, 0);
+        graphics2D.setStroke(stroke);
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawRect(minX - 5, minY - 5, (maxX - minX) + addPW + 10, (maxY - minY) + minPH + 10);
+    }
+
 
     @Override
-    public void execute() throws IOException {
-        CommandHistory.add(this);
-        System.out.println("EXECUTE!!!");
-    }
+    public void execute() throws IOException {}
 
     @Override
-    public void undo() {
-        System.out.println("UNDO!!!");
-
-    }
+    public void undo() {}
 
     @Override
-    public void redo() {
-        System.out.println("REDO!!!");
-
-    }
+    public void redo() {}
 }
 
 
